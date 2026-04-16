@@ -1,0 +1,113 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:name1",
+ "creation": "2026-04-15 15:55:16.297807",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "services_section",
+  "name1",
+  "description",
+  "is_active",
+  "order_by_sequence",
+  "column_break_itfy",
+  "url",
+  "created_date",
+  "meta_title",
+  "meta_keyword",
+  "meta_description",
+  "thumnail_image"
+ ],
+ "fields": [
+  {
+   "fieldname": "services_section",
+   "fieldtype": "Section Break",
+   "label": "Services"
+  },
+  {
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "label": "Name",
+   "unique": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  },
+  {
+   "fieldname": "order_by_sequence",
+   "fieldtype": "Int",
+   "label": "Order by Sequence"
+  },
+  {
+   "fieldname": "column_break_itfy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "url",
+   "fieldtype": "Data",
+   "label": "Url"
+  },
+  {
+   "fieldname": "created_date",
+   "fieldtype": "Datetime",
+   "label": "Created Date"
+  },
+  {
+   "fieldname": "meta_title",
+   "fieldtype": "Data",
+   "label": "Meta Title"
+  },
+  {
+   "fieldname": "meta_keyword",
+   "fieldtype": "Small Text",
+   "label": "Meta Keyword"
+  },
+  {
+   "fieldname": "meta_description",
+   "fieldtype": "Small Text",
+   "label": "Meta Description"
+  },
+  {
+   "fieldname": "thumnail_image",
+   "fieldtype": "Attach Image",
+   "label": "Thumnail Image"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-04-15 16:01:05.270390",
+ "modified_by": "Administrator",
+ "module": "Someshwara Hospital",
+ "name": "Our Services",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
