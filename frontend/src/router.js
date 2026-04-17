@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-const ServiceDetails = () => import('@/ServicesDetails/ServiceDetails.vue')
 
 const routes = [
   {
@@ -20,17 +19,80 @@ const routes = [
   {
     path: '/services/:slug',
     name: 'ServiceDetails',
-    component: ServiceDetails,
+    component: () => import('@/ServicesDetails/ServiceDetails.vue'),
     meta: {
       title: '',
+      description: '',
+    },
+  },
+  {
+    path: '/doctors-list',
+    name: 'DoctorsList',
+    component: () => import('@/DoctorsList/DoctorsList.vue'),
+    meta: {
+      title: '',
+      description: '',
+    },
+  },
+  {
+    path: '/viewProfile/:id',
+    name: 'ViewProfile', 
+    component: () => import('@/DoctorsList/Viewprofile.vue'),
+  },
+  {
+    path: '/appointment',
+    name: 'AppointmentPage',
+    component: () => import('@/Appointment/AppointmentPage.vue'),
+  },
+  {
+    path: '/thank-you',
+    name: 'ThankYou', 
+    component: () => import('@/ThankYou/thankyou.vue'),
+  },
+  {
+    path: '/gallery',
+    name: 'Gallery',
+    component: () => import('@/Gallery/Gallery.vue'),
+    meta: {
+      title: '',
+      description: '',
+    },
+  },
+
+  // ================= Blogs =================
+  {
+    path: '/blog',
+    name: 'BlogsPreview',
+    component: () => import('@/Blogs/BlogsPreview.vue'),
+    meta: {
+      title: 'Health & Wellness Blog | Dr Heal',
       description:
-        '',
+        'Read expert health tips, diagnostic guides, and wellness articles from Dr Heal.',
+    },
+  },
+  {
+    path: '/blogdetails/:slug',
+    name: 'BlogDetails',
+    component: () => import('@/Blogs/BlogDetails.vue'),
+    meta: {
+      title: 'Health Articles & Medical Insights | Dr Heal Blog',
+      description:
+        'Explore informative health articles covering diagnostics, wellness, and preventive healthcare.',
+    },
+  },
+  {
+    path: '/contact-us',
+    name: 'ContactUs',
+    component: () => import('@/ContactUs/Contactus.vue'),
+    meta: {
+      title: '',
+      description: '',
     },
   },
 ]
 
 const router = createRouter({
-  history: createWebHistory(), // ✅ FIXED
+  history: createWebHistory(),
   routes,
   scrollBehavior() {
     return { top: 0 }

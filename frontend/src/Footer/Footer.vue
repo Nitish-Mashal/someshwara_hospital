@@ -87,9 +87,9 @@
                             <!-- EMAIL -->
                             <div class="flex items-center gap-2">
                                 <i class="bi bi-envelope-fill text-yellow-400"></i>
-                                <a href="mailto:info@someshwarahospital.in"
+                                <a href="mailto:someshwarahospital28@gmail.com"
                                    class="text-white no-underline">
-                                    info@someshwarahospital.in
+                                    someshwarahospital28@gmail.com
                                 </a>
                             </div>
 

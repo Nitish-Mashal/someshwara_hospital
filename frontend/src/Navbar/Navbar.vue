@@ -86,7 +86,7 @@
                     </li>
 
                     <li>
-                        <router-link to="/contect-us" class="hover:text-blue-600 text-gray-800 no-underline">
+                        <router-link to="/contact-us" class="hover:text-blue-600 text-gray-800 no-underline">
                             Contact Us
                         </router-link>
                     </li>
@@ -145,26 +145,38 @@
                 <li><router-link to="/" class="text-gray-800 no-underline">Home</router-link></li>
                 <!-- MOBILE About Us -->
                 <li>
-                    <router-link to="/about-us" class="hover:text-blue-600 text-gray-800 no-underline">
-                        <button class="flex w-full gap-2 items-center">
+                    <div class="flex w-full justify-between items-center">
+
+                        <!-- TEXT (normal navigation) -->
+                        <router-link to="/about-us" class="text-gray-800 no-underline">
                             About Us
-                            <svg @click="activeMobileDropdown = 'more'" class="w-4 h-4" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </button>
-                    </router-link>
+                        </router-link>
+
+                        <!-- ARROW (ONLY opens dropdown) -->
+                        <svg @click.stop="activeMobileDropdown = 'more'" class="w-4 h-4 cursor-pointer" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+
+                    </div>
                 </li>
 
                 <!-- MOBILE SERVICES -->
                 <li>
-                    <button @click="activeMobileDropdown = 'services'" class="flex w-full gap-2 items-center">
-                        Services
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="flex w-full justify-between items-center">
+
+                        <!-- TEXT (optional navigation or just label) -->
+                        <span class="text-gray-800">
+                            Services
+                        </span>
+
+                        <!-- ARROW -->
+                        <svg @click.stop="activeMobileDropdown = 'services'" class="w-4 h-4 cursor-pointer" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
-                    </button>
+
+                    </div>
                 </li>
 
                 <!-- MOBILE DOCTORS -->
@@ -218,17 +230,6 @@
                         </li>
                     </ul>
 
-                    <!-- FACILITIES -->
-                    <ul v-if="activeMobileDropdown === 'facilities'" class="divide-y">
-                        <li v-for="facility in facilities" :key="facility.url">
-                            <router-link :to="`/facilities/${facility.url}`"
-                                class="block py-3 text-[14px] font-medium text-gray-800 no-underline"
-                                @click="activeMobileDropdown = null">
-                                {{ facility.name1 }}
-                            </router-link>
-                        </li>
-                    </ul>
-
                     <!-- MORE -->
                     <ul v-if="activeMobileDropdown === 'more'" class="divide-y">
                         <li>
@@ -266,16 +267,6 @@ const fetchServices = async () => {
         const res = await fetch("/api/method/someshwara_hospital.api.our_services.get_our_services")
         const data = await res.json()
         if (data.message?.status === "success") services.value = data.message.data
-    } catch (err) {
-        console.error(err)
-    }
-}
-
-const fetchFacilities = async () => {
-    try {
-        const res = await fetch("/api/method/drheal_frontend.api.facilities.get_our_facilities")
-        const data = await res.json()
-        if (data.message?.status === "success") facilities.value = data.message.data
     } catch (err) {
         console.error(err)
     }
@@ -323,7 +314,6 @@ watch(
 // ========================= ON MOUNT =========================
 onMounted(() => {
     fetchServices()
-    fetchFacilities()
     document.addEventListener("click", handleClickOutside)
 })
 

@@ -5,6 +5,72 @@ app_description = "Our hospital provides comprehensive medical services, ranging
 app_email = "nitish.m@quantumberg.com"
 app_license = "mit"
 
+
+override_whitelisted_methods = {
+    "healthcare.healthcare.doctype.patient_appointment.patient_appointment.get_availability_data":
+    "someshwara_hospital.get_availability.get_availability_data"
+}
+
+# fixtures = [
+#     {
+#         "doctype": "Custom Field",
+#         "filters": [
+#             ["dt", "in", [
+#                 "Patient Appointment",
+#                 "Healthcare Schedule Time Slot",
+#                 "Healthcare Practitioner"
+#             ]]
+#         ]
+#     },
+#     {
+#         "doctype": "Property Setter",
+#         "filters": [
+#             ["doc_type", "in", [
+#                 "Patient Appointment",
+#                 "Healthcare Schedule Time Slot",
+#                 "Healthcare Practitioner"
+#             ]]
+#         ]
+#     }
+# ]
+
+fixtures = [
+    # Custom Fields
+    {
+        "doctype": "Custom Field",
+        "filters": [
+            ["dt", "in", [
+                "Patient Appointment",
+                "Healthcare Schedule Time Slot",
+                "Healthcare Practitioner"
+            ]]
+        ]
+    },
+
+    # Property Setters (if used)
+    {
+        "doctype": "Property Setter",
+        "filters": [
+            ["doc_type", "in", [
+                "Patient Appointment",
+                "Healthcare Schedule Time Slot",
+                "Healthcare Practitioner"
+            ]]
+        ]
+    },
+
+    # ✅ Client Scripts
+    {
+        "doctype": "Client Script",
+        "filters": [
+            ["dt", "in", [
+                "Patient Appointment",
+                "Practitioner Schedule"
+            ]]
+        ]
+    }
+]
+
 # Apps
 # ------------------
 

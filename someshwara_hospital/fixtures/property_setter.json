@@ -1,0 +1,50 @@
+[
+ {
+  "default_value": null,
+  "doc_type": "Healthcare Practitioner",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocType",
+  "field_name": null,
+  "is_system_generated": 0,
+  "modified": "2026-04-16 15:28:54.610529",
+  "module": null,
+  "name": "Healthcare Practitioner-main-field_order",
+  "property": "field_order",
+  "property_type": "Data",
+  "row_name": null,
+  "value": "[\"basic_details_section\", \"naming_series\", \"first_name\", \"middle_name\", \"last_name\", \"practitioner_name\", \"gender\", \"image\", \"column_break_7\", \"status\", \"mobile_phone\", \"residence_phone\", \"office_phone\", \"custom_order_by\", \"custom_experience\", \"custom_online_visibility\", \"custom_qualification\", \"employee_and_user_details_section\", \"practitioner_type\", \"employee\", \"supplier\", \"department\", \"designation\", \"column_break_17\", \"user_id\", \"hospital\", \"appointments\", \"practitioner_schedules\", \"google_calendar\", \"show_in_portal\", \"charges\", \"op_consulting_charge_item\", \"op_consulting_charge\", \"column_break_18\", \"inpatient_visit_charge_item\", \"inpatient_visit_charge\", \"free_followup_details_section\", \"enable_free_follow_ups\", \"max_visits\", \"valid_days\", \"account_details\", \"default_currency\", \"accounts\", \"address_and_contacts_section\", \"address_html\", \"column_break_19\", \"contact_html\", \"primary_address_and_contact_detail\", \"practitioner_primary_contact\", \"mobile_no\", \"email_id\", \"column_break_26\", \"practitioner_primary_address\", \"primary_address\"]"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Healthcare Schedule Time Slot",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocType",
+  "field_name": null,
+  "is_system_generated": 0,
+  "modified": "2026-04-17 10:43:39.444577",
+  "module": null,
+  "name": "Healthcare Schedule Time Slot-main-field_order",
+  "property": "field_order",
+  "property_type": "Data",
+  "row_name": null,
+  "value": "[\"day\", \"from_time\", \"to_time\", \"duration\", \"maximum_appointments\", \"custom_token_no\"]"
+ },
+ {
+  "default_value": null,
+  "doc_type": "Patient Appointment",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocType",
+  "field_name": null,
+  "is_system_generated": 0,
+  "modified": "2026-04-17 11:38:49.003274",
+  "module": null,
+  "name": "Patient Appointment-main-field_order",
+  "property": "field_order",
+  "property_type": "Data",
+  "row_name": null,
+  "value": "[\"naming_series\", \"title\", \"status\", \"appointment_type\", \"appointment_for\", \"column_break_1\", \"company\", \"practitioner\", \"practitioner_name\", \"department\", \"service_unit\", \"appointment_date\", \"section_patient_details\", \"patient\", \"patient_name\", \"inpatient_record\", \"patient_sex\", \"patient_age\", \"column_break_4pp7\", \"custom_token_no\", \"custom_email\", \"custom_whatsapp_number\", \"custom_alternative_phone_number\", \"custom_location\", \"insurance_section\", \"insurance_policy\", \"insurance_payor\", \"column_break_49\", \"insurance_coverage\", \"coverage_status\", \"source_section\", \"column_break_xmkt\", \"source\", \"referring_practitioner\", \"column_break_gdcb\", \"service_request\", \"reference_doctype\", \"reference_docname\", \"section_break_12\", \"duration\", \"procedure_template\", \"get_procedure_from_encounter\", \"procedure_prescription\", \"therapy_plan\", \"therapy_type\", \"get_prescribed_therapies\", \"template_dt\", \"template_dn\", \"get_orders\", \"column_break_17\", \"appointment_time\", \"appointment_datetime\", \"appointment_end_datetime\", \"add_video_conferencing\", \"event\", \"google_meet_link\", \"custom_booking_type\", \"custom_created_user\", \"custom_created_date\", \"section_break_16\", \"mode_of_payment\", \"billing_item\", \"invoiced\", \"column_break_2\", \"paid_amount\", \"ref_sales_invoice\", \"section_break_3\", \"appointment_based_on_check_in\", \"position_in_queue\", \"column_break_wicc\", \"reminded\", \"appointment_notes_section\", \"notes\"]"
+ }
+]

@@ -1,0 +1,24 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Practitioner Schedule",
+  "enabled": 1,
+  "modified": "2026-04-17 11:11:03.080221",
+  "module": null,
+  "name": "Token generate",
+  "script": "// Parent Doctype\r\nfrappe.ui.form.on(\"Practitioner Schedule\", {\r\n    before_save(frm) {\r\n        generate_tokens(frm);\r\n    },\r\n    refresh(frm) {\r\n        generate_tokens(frm);\r\n    }\r\n});\r\n\r\n\r\n// 🔹 Child Table Doctype (IMPORTANT: replace with your actual child table name)\r\nfrappe.ui.form.on(\"Practitioner Schedule Time Slots\", {\r\n    \r\n    // When row is added\r\n    time_slots_add(frm) {\r\n        generate_tokens(frm);\r\n    },\r\n\r\n    // When fields are changed\r\n    from_time(frm, cdt, cdn) {\r\n        generate_tokens(frm);\r\n    },\r\n\r\n    to_time(frm, cdt, cdn) {\r\n        generate_tokens(frm);\r\n    },\r\n\r\n    day(frm, cdt, cdn) {\r\n        generate_tokens(frm);\r\n    },\r\n\r\n    // When row is removed\r\n    time_slots_remove(frm) {\r\n        generate_tokens(frm);\r\n    }\r\n});\r\n\r\n\r\n// 🔹 Helper: Convert time → minutes\r\nfunction time_to_minutes(time) {\r\n    if (!time) return 0;\r\n\r\n    let parts = time.split(\":\").map(Number);\r\n    return (parts[0] * 60) + parts[1];\r\n}\r\n\r\n\r\n// 🔹 Main Function\r\nfunction generate_tokens(frm) {\r\n    if (!frm.doc.time_slots || frm.doc.time_slots.length === 0) return;\r\n\r\n    // Clone and sort rows (Day → From Time)\r\n    let rows = [...frm.doc.time_slots].sort((a, b) => {\r\n\r\n        if ((a.day || '') !== (b.day || '')) {\r\n            return (a.day || '').localeCompare(b.day || '');\r\n        }\r\n\r\n        return time_to_minutes(a.from_time) - time_to_minutes(b.from_time);\r\n    });\r\n\r\n    let current_day = null;\r\n    let token_counter = 0;\r\n\r\n    rows.forEach(row => {\r\n\r\n        // Reset counter when day changes\r\n        if (row.day !== current_day) {\r\n            current_day = row.day;\r\n            token_counter = 1;\r\n        } else {\r\n            token_counter++;\r\n        }\r\n\r\n        let token = `Token ${token_counter}`;\r\n\r\n        // Set value in child table\r\n        frappe.model.set_value(\r\n            row.doctype,\r\n            row.name,\r\n            \"custom_token_no\",\r\n            token\r\n        );\r\n    });\r\n\r\n    // Refresh child table UI\r\n    frm.refresh_field(\"time_slots\");\r\n}",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Patient Appointment",
+  "enabled": 1,
+  "modified": "2026-04-17 13:04:51.972735",
+  "module": "Someshwara Hospital",
+  "name": "Get Token",
+  "script": "frappe.ui.form.on(\"Patient Appointment\", { \r\n    validate(frm) {\r\n        regenerate_token(frm);\r\n    }\r\n});\r\n\r\nfunction regenerate_token(frm) {\r\n\r\n    if (frm.doc.appointment_for !== \"Practitioner\") return;\r\n\r\n    if (!frm.doc.practitioner || !frm.doc.appointment_date || !frm.doc.appointment_time) {\r\n        return;\r\n    }\r\n\r\n    // Clear before regenerating\r\n    frm.set_value(\"custom_token_no\", null);\r\n\r\n    frappe.call({\r\n        method: \"someshwara_hospital.api.token_api.get_token_for_appointment\",\r\n        args: {\r\n            practitioner: frm.doc.practitioner,\r\n            appointment_date: frm.doc.appointment_date,\r\n            appointment_time: frm.doc.appointment_time\r\n        },\r\n        callback: function (r) {\r\n            if (r.message) {\r\n                frm.set_value(\"custom_token_no\", r.message);\r\n            }\r\n        }\r\n    });\r\n}",
+  "view": "Form"
+ }
+]
