@@ -175,7 +175,7 @@ const serviceImage = computed(() => {
 
     return service.value.thumnail_image.startsWith("http")
         ? service.value.thumnail_image
-        : `http://127.0.0.1:8000/${service.value.thumnail_image}` // 🔥 CHANGE THIS
+        : `/${service.value.thumnail_image}` // 🔥 CHANGE THIS
 })
 
 const altText = computed(() =>

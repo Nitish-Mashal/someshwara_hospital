@@ -13,7 +13,7 @@
 
                     <!-- ✅ FIXED IMAGE -->
                     <img :src="resolveBannerImage(firstBanner)" :alt="getBannerAlt(firstBanner)" fetchpriority="high"
-                        decoding="async" class="w-full h-auto sm:h-[400px] object-contain sm:object-cover block" />
+                        decoding="async" class="w-full h-[120px] sm:h-[400px] object-cover block" />
                 </component>
             </div>
 
@@ -28,12 +28,12 @@
 
                         <!-- ✅ FIXED IMAGE (MAIN FIX) -->
                         <img :src="resolveBannerImage(banner)" :alt="getBannerAlt(banner)"
-                            class="w-full h-auto sm:h-full object-contain sm:object-cover block"
+                            class="w-full h-[120px] sm:h-[400px] object-cover block"
                             :loading="index === 0 ? 'eager' : 'lazy'" :fetchpriority="index === 0 ? 'high' : 'auto'"
                             decoding="async" />
 
                         <!-- 🔥 BUTTONS -->
-                        <div class="absolute bottom-24 left-10 sm:left-20 lg:left-40 hidden sm:flex gap-3 z-50">
+                        <div class="absolute bottom-24 sm:left-20 lg:left-40 hidden sm:flex gap-3 z-50">
                             <router-link to="/doctors-list">
                                 <button class="bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold">
                                     Book Appointment
@@ -160,14 +160,14 @@ onMounted(loadBanners)
     display: block;
 }
 
-/* 🔥 MOBILE = AUTO HEIGHT (NO GAP) */
+/* MOBILE */
 .banner-carousel :deep(.el-carousel__container),
 .banner-carousel :deep(.el-carousel__item),
 .banner-carousel :deep(.el-carousel__item > div) {
     height: 120px;
 }
 
-/* 🔥 DESKTOP HEIGHT */
+/* DESKTOP */
 @media (min-width: 640px) {
 
     .banner-carousel :deep(.el-carousel__container),

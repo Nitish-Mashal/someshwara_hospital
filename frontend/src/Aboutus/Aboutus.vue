@@ -4,7 +4,7 @@
         <!-- 🔥 FULL WIDTH BANNER -->
         <div class="relative w-full h-[220px] md:h-[420px] overflow-hidden">
 
-            <img src="/files/about-us-image.jpg" alt="Someshwara Hospital" class="w-full h-full object-cover" />
+            <img :src="getFileUrl('about-us-image.jpg')" alt="Someshwara Hospital" class="w-full h-full object-cover" />
 
             <!-- WHITE OVERLAY -->
             <div class="absolute inset-0 bg-white/50"></div>
@@ -21,8 +21,60 @@
 
         </div>
 
+        <!-- 🔥 EXTENDED ABOUT SECTION -->
+        <div class="container py-4">
+
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+
+                <!-- Image Wrapper -->
+                <div class="relative">
+                    <img :src="getFileUrl('someshwara-hospital-about.png')" alt="Someshwara Hospital"
+                        class="w-full h-auto rounded-2xl shadow-lg" />
+
+                    <!-- Accent Box -->
+                    <div class="absolute -bottom-4 -right-4 bg-yellow-400 w-24 h-24 rounded-xl hidden md:block"></div>
+                </div>
+
+                <!-- CONTENT -->
+                <div>
+                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">
+                        Excellence in Orthopedic & Pain Care
+                    </h3>
+
+                    <div class="w-14 h-1 bg-yellow-400 mb-4 rounded"></div>
+
+                    <p class="text-gray-600 mb-3 leading-relaxed">
+                        Someshwara Hospital is known for its excellence in orthopedic and pain management treatments.
+                        We provide specialized care for joint disorders, spine conditions, fractures, and sports
+                        injuries.
+                    </p>
+
+                    <p class="text-gray-600 mb-3 leading-relaxed">
+                        Our hospital also focuses on advanced regenerative therapies such as PRP and Ozone Therapy,
+                        which help promote natural healing and reduce the need for invasive procedures.
+                    </p>
+
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        With a patient-first approach, we ensure comfort, transparency, and continuous support
+                        throughout your treatment journey.
+                    </p>
+
+                    <!-- CTA -->
+                    <router-link to="/appointment">
+                        <button class="bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold
+                                       hover:bg-yellow-400 hover:text-blue-700 transition">
+                            Book Appointment →
+                        </button>
+                    </router-link>
+
+                </div>
+
+            </div>
+
+        </div>
+
         <!-- 🔵 ABOUT CONTENT -->
-        <div class="container pt-5">
+        <div class="container pt-3">
 
             <div class="max-w-4xl mx-auto text-center">
 
@@ -98,57 +150,7 @@
 
         </div>
 
-        <!-- 🔥 EXTENDED ABOUT SECTION -->
-        <div class="container py-10">
-
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-
-                <!-- Image Wrapper -->
-                <div class="relative">
-                    <img src="/files/someshwara-hospital-about.png" alt="Someshwara Hospital"
-                        class="w-full h-auto rounded-2xl shadow-lg" />
-
-                    <!-- Accent Box -->
-                    <div class="absolute -bottom-4 -right-4 bg-yellow-400 w-24 h-24 rounded-xl hidden md:block"></div>
-                </div>
-
-                <!-- CONTENT -->
-                <div>
-                    <h3 class="text-2xl font-semibold text-blue-700 mb-3">
-                        Excellence in Orthopedic & Pain Care
-                    </h3>
-
-                    <div class="w-14 h-1 bg-yellow-400 mb-4 rounded"></div>
-
-                    <p class="text-gray-600 mb-3 leading-relaxed">
-                        Someshwara Hospital is known for its excellence in orthopedic and pain management treatments.
-                        We provide specialized care for joint disorders, spine conditions, fractures, and sports
-                        injuries.
-                    </p>
-
-                    <p class="text-gray-600 mb-3 leading-relaxed">
-                        Our hospital also focuses on advanced regenerative therapies such as PRP and Ozone Therapy,
-                        which help promote natural healing and reduce the need for invasive procedures.
-                    </p>
-
-                    <p class="text-gray-600 mb-4 leading-relaxed">
-                        With a patient-first approach, we ensure comfort, transparency, and continuous support
-                        throughout your treatment journey.
-                    </p>
-
-                    <!-- CTA -->
-                    <router-link to="/appointment">
-                        <button class="bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold
-                                       hover:bg-yellow-400 hover:text-blue-700 transition">
-                            Book Appointment →
-                        </button>
-                    </router-link>
-
-                </div>
-
-            </div>
-
-        </div>
+        <OurTeam />
 
     </section>
 </template>
@@ -157,4 +159,10 @@
 import { ref, onMounted, onUnmounted, defineAsyncComponent } from 'vue'
 
 const Utility = defineAsyncComponent(() => import('../Home/Utility.vue'))
+const OurTeam = defineAsyncComponent(() => import('./OurTeam.vue'))
+
+const getFileUrl = (file) => {
+    return `${window.location.origin}/files/${file}`;
+};
+
 </script>

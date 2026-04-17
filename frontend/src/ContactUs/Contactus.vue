@@ -1,9 +1,22 @@
 <template>
     <div>
         <!-- Banner -->
-        <div class="relative w-full">
-            <img src="https://www.drheal.in/files/contact-us.jpg" alt="Someshwara Hospital - Contact Us"
-                class="w-full sm:h-56 md:h-72 object-contain md:object-cover" />
+        <div class="relative w-full mb-6 overflow-hidden">
+
+            <img src="/files/contact-us-image.jpg" alt="Someshwara Hospital Gallery"
+                class="w-full h-48 sm:h-56 md:h-80 object-cover" />
+
+            <!-- BLUE OVERLAY -->
+            <div class="absolute inset-0 bg-black/30"></div>
+
+            <!-- TEXT -->
+            <div class="absolute inset-0 flex items-center justify-center px-4">
+                <div class="text-center">
+                    <h1 class="font-bold text-2xl md:text-4xl text-white">
+                        Contact Us
+                    </h1>
+                </div>
+            </div>
         </div>
 
         <!-- Main Section -->

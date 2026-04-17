@@ -8,9 +8,7 @@
 
                     <!-- LOGO & SOCIAL -->
                     <div class="col-md-3">
-                        <img src="/files/logo.png"
-                             alt="Someshwara Hospital"
-                             class="h-20 mb-4 object-contain" />
+                        <img src="/files/logo.png" alt="Someshwara Hospital" class="h-20 mb-4 object-contain" />
 
                         <p class="mb-4 text-sm leading-relaxed">
                             {{ tagline }}
@@ -18,11 +16,8 @@
 
                         <!-- Social Icons -->
                         <div class="flex gap-3">
-                            <a v-for="social in socialIcons"
-                            :key="social.icon"
-                            :href="social.url"
-                            target="_blank"
-                            class="w-8 h-8 flex items-center justify-center
+                            <a v-for="social in socialIcons" :key="social.icon" :href="social.url" target="_blank"
+                                class="w-8 h-8 flex items-center justify-center
                                     bg-yellow-400 text-blue-700 rounded-full
                                     hover:bg-white hover:text-blue-700 transition">
 
@@ -39,8 +34,7 @@
 
                         <ul class="space-y-2 text-sm">
                             <li v-for="link in quickLinks" :key="link.path">
-                                <router-link :to="link.path"
-                                    class="text-white no-underline">
+                                <router-link :to="link.path" class="text-white no-underline">
                                     {{ link.name }}
                                 </router-link>
                             </li>
@@ -54,8 +48,7 @@
                         </h5>
 
                         <ul class="space-y-2 text-sm">
-                            <li v-for="service in services" :key="service.service"
-                                class="text-white">
+                            <li v-for="service in services" :key="service.service" class="text-white">
                                 {{ service.service }}
                             </li>
                         </ul>
@@ -67,9 +60,7 @@
                             Contact Us
                         </h5>
 
-                        <p v-for="(address, index) in addresses"
-                           :key="index"
-                           class="text-sm mb-3 leading-6">
+                        <p v-for="(address, index) in addresses" :key="index" class="text-sm mb-3 leading-6">
                             {{ address }}
                         </p>
 
@@ -78,8 +69,7 @@
                             <!-- PHONE -->
                             <div class="flex items-center gap-2">
                                 <i class="bi bi-telephone-fill text-yellow-400"></i>
-                                <a href="tel:+919945141393"
-                                   class="text-white no-underline">
+                                <a href="tel:+919945141393" class="text-white no-underline">
                                     +91 99451 41393
                                 </a>
                             </div>
@@ -87,8 +77,7 @@
                             <!-- EMAIL -->
                             <div class="flex items-center gap-2">
                                 <i class="bi bi-envelope-fill text-yellow-400"></i>
-                                <a href="mailto:someshwarahospital28@gmail.com"
-                                   class="text-white no-underline">
+                                <a href="mailto:someshwarahospital28@gmail.com" class="text-white no-underline">
                                     someshwarahospital28@gmail.com
                                 </a>
                             </div>
@@ -102,7 +91,8 @@
 
         <!-- BOTTOM BAR -->
         <div class="bg-yellow-400 text-blue-700 px-5 py-4">
-            <div class="container flex flex-col md:flex-row justify-between items-center text-sm text-center md:text-left gap-2">
+            <div
+                class="container flex flex-col md:flex-row justify-between items-center text-sm text-center md:text-left gap-2">
 
                 <p>
                     © {{ year }} Someshwara Hospital. All rights reserved.
@@ -110,9 +100,7 @@
 
                 <p>
                     Powered by
-                    <a href="https://quantumberg.com/"
-                       target="_blank"
-                       class="font-semibold hover:underline ">
+                    <a href="https://quantumberg.com/" target="_blank" class="font-semibold hover:underline ">
                         Quantumberg Technologies Pvt Ltd
                     </a>
                 </p>
@@ -127,7 +115,7 @@
 import { ref, onMounted } from "vue";
 
 /* FIXED TYPO */
-setTimeout(() => {}, 1000)
+setTimeout(() => { }, 1000)
 
 const year = new Date().getFullYear()
 

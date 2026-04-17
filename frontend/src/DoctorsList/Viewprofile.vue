@@ -119,8 +119,8 @@ export default {
     computed: {
         doctorAltText() {
             return this.doctor?.first_name
-                ? `Dr.Heal Multispeciality Hospital - ${this.doctor.first_name}`
-                : "Dr.Heal Multispeciality Hospital";
+                ? `Someshwara Hospital - ${this.doctor.first_name}`
+                : "Someshwara Hospital";
         },
     },
 

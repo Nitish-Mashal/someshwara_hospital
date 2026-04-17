@@ -3,11 +3,7 @@
 
     <!-- 🔷 HERO -->
     <section class="relative w-full">
-      <img
-        src="/files/DoctorsTeam.png"
-        alt="Doctors"
-        class="w-full h-48 sm:h-56 md:h-72 object-cover"
-      />
+      <img src="/files/DoctorsTeam.png" alt="Doctors" class="w-full h-48 sm:h-56 md:h-72 object-cover" />
 
       <!-- BLUE OVERLAY -->
       <div class="absolute inset-0 bg-blue-900/70"></div>
@@ -34,26 +30,15 @@
       </div>
 
       <!-- Doctors -->
-      <div
-        v-else-if="doctors.length"
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-      >
-        <div
-          v-for="doctor in doctors"
-          :key="doctor.name"
-          class="bg-white rounded-xl shadow-md overflow-hidden 
+      <div v-else-if="doctors.length" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div v-for="doctor in doctors" :key="doctor.name" class="bg-white rounded-xl shadow-md overflow-hidden 
                  hover:shadow-xl transition-all duration-300 
-                 hover:-translate-y-1 border-t-4 border-yellow-400"
-        >
+                 hover:-translate-y-1 border-t-4 border-yellow-400">
 
           <!-- IMAGE -->
           <div class="relative">
-            <img
-              :src="getImage(doctor.image)"
-              :alt="doctor.first_name"
-              class="w-full h-72 object-cover"
-              loading="lazy"
-            />
+            <img :src="getImage(doctor.image)" :alt="doctor.first_name" class="w-full h-72 object-cover"
+              loading="lazy" />
           </div>
 
           <!-- INFO -->
@@ -67,20 +52,14 @@
           <div class="grid grid-cols-2">
 
             <!-- View Profile -->
-            <router-link
-              :to="{ name: 'ViewProfile', params: { id: doctor.name } }"
-              class="text-center bg-blue-700 text-white py-2 font-medium 
-                     hover:bg-blue-800 transition border-r border-blue-600"
-            >
+            <router-link :to="{ name: 'ViewProfile', params: { id: doctor.name } }" class="text-center bg-blue-700 text-white py-2 font-medium 
+                     hover:bg-blue-800 transition border-r border-blue-600">
               View Profile
             </router-link>
 
             <!-- Book Now -->
-            <button
-              @click="bookAppointment(doctor)"
-              class="bg-yellow-400 text-blue-900 py-2 font-semibold 
-                     hover:bg-yellow-500 transition w-full"
-            >
+            <button @click="bookAppointment(doctor)" class="bg-yellow-400 text-blue-900 py-2 font-semibold 
+                     hover:bg-yellow-500 transition w-full">
               Book Now
             </button>
 

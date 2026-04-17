@@ -65,9 +65,9 @@ const routes = [
     name: 'BlogsPreview',
     component: () => import('@/Blogs/BlogsPreview.vue'),
     meta: {
-      title: 'Health & Wellness Blog | Dr Heal',
+      title: '',
       description:
-        'Read expert health tips, diagnostic guides, and wellness articles from Dr Heal.',
+        '',
     },
   },
   {
@@ -75,9 +75,9 @@ const routes = [
     name: 'BlogDetails',
     component: () => import('@/Blogs/BlogDetails.vue'),
     meta: {
-      title: 'Health Articles & Medical Insights | Dr Heal Blog',
+      title: '',
       description:
-        'Explore informative health articles covering diagnostics, wellness, and preventive healthcare.',
+        '',
     },
   },
   {

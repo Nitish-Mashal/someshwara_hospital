@@ -4,7 +4,7 @@
         <!-- ================= BANNER ================= -->
         <div class="relative w-full mb-6 overflow-hidden">
 
-            <img src="https://www.drheal.in/files/dr-heal-about-us.webp" alt="Someshwara Hospital Gallery"
+            <img src="/files/gallery-image.jpg" alt="Someshwara Hospital Gallery"
                 class="w-full h-48 sm:h-56 md:h-80 object-cover" />
 
             <!-- BLUE OVERLAY -->
