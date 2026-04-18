@@ -3,7 +3,7 @@
 
         <!-- 🔷 HERO -->
         <section class="relative w-full h-64 md:h-80">
-            <img src="/files/DoctorsTeam.png" class="w-full h-full object-cover" />
+            <img :src="getFileUrl('DoctorsTeam.png')" class="w-full h-full object-cover" />
 
             <div class="absolute inset-0 bg-blue-900/60"></div>
 
@@ -100,63 +100,66 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: "ViewProfile",
+<script setup>
+import { ref, computed, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
-    data() {
-        return {
-            doctor: null,
-            loading: true,
-            error: null,
-        };
-    },
+// state
+const doctor = ref(null);
+const loading = ref(true);
+const error = ref(null);
 
-    async created() {
-        await this.fetchDoctor();
-    },
+const route = useRoute();
+const router = useRouter();
 
-    computed: {
-        doctorAltText() {
-            return this.doctor?.first_name
-                ? `Someshwara Hospital - ${this.doctor.first_name}`
-                : "Someshwara Hospital";
-        },
-    },
-
-    methods: {
-        async fetchDoctor() {
-            this.loading = true;
-            try {
-                const doctorId = this.$route.params.id;
-                const res = await fetch(
-                    `/api/method/someshwara_hospital.api.doctor_list.get_doctor?id=${doctorId}`
-                );
-
-                if (!res.ok) throw new Error("Failed to fetch doctor");
-
-                const data = await res.json();
-                this.doctor = data.message || null;
-            } catch (err) {
-                console.error(err);
-                this.error = "Unable to load doctor profile.";
-            } finally {
-                this.loading = false;
-            }
-        },
-
-        bookAppointment() {
-            if (!this.doctor) return;
-
-            this.$router.push({
-                name: "AppointmentPage",
-                query: {
-                    department: this.doctor.department,
-                    doctor_id: this.doctor.name,
-                    doctor_name: `${this.doctor.first_name || ""} ${this.doctor.last_name || ""}`.trim(),
-                },
-            });
-        },
-    },
+// ✅ helper function
+const getFileUrl = (file) => {
+    return `${window.location.origin}/files/${file}`;
 };
+
+// computed
+const doctorAltText = computed(() => {
+    return doctor.value?.first_name
+        ? `Someshwara Hospital - ${doctor.value.first_name}`
+        : "Someshwara Hospital";
+});
+
+// fetch doctor
+const fetchDoctor = async () => {
+    loading.value = true;
+    try {
+        const doctorId = route.params.id;
+
+        const res = await fetch(
+            `/api/method/someshwara_hospital.api.doctor_list.get_doctor?id=${doctorId}`
+        );
+
+        if (!res.ok) throw new Error("Failed to fetch doctor");
+
+        const data = await res.json();
+        doctor.value = data.message || null;
+    } catch (err) {
+        console.error(err);
+        error.value = "Unable to load doctor profile.";
+    } finally {
+        loading.value = false;
+    }
+};
+
+// CTA
+const bookAppointment = () => {
+    if (!doctor.value) return;
+
+    router.push({
+        name: "AppointmentPage",
+        query: {
+            department: doctor.value.department,
+            doctor_id: doctor.value.name,
+            doctor_name: `${doctor.value.first_name || ""} ${doctor.value.last_name || ""}`.trim(),
+        },
+    });
+};
+
+// lifecycle
+onMounted(fetchDoctor);
 </script>

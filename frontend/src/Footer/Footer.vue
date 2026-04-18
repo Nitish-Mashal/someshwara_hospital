@@ -8,7 +8,7 @@
 
                     <!-- LOGO & SOCIAL -->
                     <div class="col-md-3">
-                        <img src="/files/logo.png" alt="Someshwara Hospital" class="h-20 mb-4 object-contain" />
+                        <img :src="getFileUrl('logo.png')" alt="Someshwara Hospital" class="h-20 mb-4 object-contain" />
 
                         <p class="mb-4 text-sm leading-relaxed">
                             {{ tagline }}
@@ -121,6 +121,10 @@ const year = new Date().getFullYear()
 
 const tagline = "Someshwara Hospital is a leading integrated super-speciality hospital dedicated to delivering high-quality, evidence-based healthcare."
 
+const getFileUrl = (file) => {
+    return `${window.location.origin}/files/${file}`;
+};
+
 const socialIcons = [
     { icon: "bi-instagram", url: "https://www.instagram.com/virusomashekaraiah" },
     { icon: "bi-facebook", url: "https://www.facebook.com/people/Dr-Viru-Somashekaraiah/61584730115916/" },
@@ -135,7 +139,7 @@ const quickLinks = [
     { name: "Blogs", path: "/blog" },
     { name: "Gallery", path: "/gallery" },
     { name: "Contact Us", path: "/contact-us" },
-    { name: "Book an Appointment", path: "/appointment" },
+    { name: "Book an Appointment", path: "/appointment-page" },
 ]
 
 const services = [

@@ -4,7 +4,7 @@
         <!-- ================= BANNER ================= -->
         <div class="relative w-full mb-6 overflow-hidden">
 
-            <img src="/files/gallery-image.jpg" alt="Someshwara Hospital Gallery"
+            <img :src="getFileUrl('gallery-image.jpg')" alt="Someshwara Hospital Gallery"
                 class="w-full h-48 sm:h-56 md:h-80 object-cover" />
 
             <!-- BLUE OVERLAY -->
@@ -87,6 +87,10 @@ const activeTag = ref("");
 const images = computed(() => {
     return imagesByTag.value[activeTag.value] || [];
 });
+
+const getFileUrl = (file) => {
+    return `${window.location.origin}/files/${file}`;
+};
 
 /* ---------------- METHODS ---------------- */
 const fetchGalleryImages = async () => {

@@ -40,7 +40,7 @@ const routes = [
     component: () => import('@/DoctorsList/Viewprofile.vue'),
   },
   {
-    path: '/appointment',
+    path: '/appointment-page',
     name: 'AppointmentPage',
     component: () => import('@/Appointment/AppointmentPage.vue'),
   },

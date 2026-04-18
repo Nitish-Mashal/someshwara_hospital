@@ -4,10 +4,8 @@
 
             <!-- LOGO -->
             <router-link to="/" class="flex items-center">
-                <img src="/files/logo.png" alt="Someshwara Hospital Logo"
-                    class="hidden sm:block h-20" />
-                <img src="/files/logo.png" alt="Someshwara Hospital Mobile Logo"
-                    class="block sm:hidden h-12" />
+                <img :src="getFileUrl('logo.png')" alt="Someshwara Hospital Logo" class="hidden sm:block h-20" />
+                <img :src="getFileUrl('logo.png')" alt="Someshwara Hospital Mobile Logo" class="block sm:hidden h-12" />
             </router-link>
 
             <!-- RIGHT SIDE -->
@@ -262,6 +260,10 @@ const mobileMore = ref(false)
 
 const services = ref([])
 const facilities = ref([])
+
+const getFileUrl = (file) => {
+    return `${window.location.origin}/files/${file}`;
+};
 
 // ========================= FETCH DATA =========================
 const fetchServices = async () => {

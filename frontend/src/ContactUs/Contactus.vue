@@ -3,7 +3,7 @@
         <!-- Banner -->
         <div class="relative w-full mb-6 overflow-hidden">
 
-            <img src="/files/contact-us-image.jpg" alt="Someshwara Hospital Gallery"
+            <img :src="getFileUrl('contact-us-image.jpg')" alt="Someshwara Hospital Gallery"
                 class="w-full h-48 sm:h-56 md:h-80 object-cover" />
 
             <!-- BLUE OVERLAY -->

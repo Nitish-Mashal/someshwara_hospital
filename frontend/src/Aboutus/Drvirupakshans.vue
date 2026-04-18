@@ -4,7 +4,7 @@
         <!-- 🔥 HERO BANNER -->
         <div class="relative w-full h-[240px] md:h-[420px] overflow-hidden">
 
-            <img src="/files/about-us-image.jpg" alt="Dr Virupaksha N.S - Someshwara Hospital"
+            <img :src="getFileUrl('about-us-image.jpg')" alt="Dr Virupaksha N.S - Someshwara Hospital"
                 class="w-full h-full object-cover" />
 
             <!-- WHITE OVERLAY -->
@@ -28,7 +28,7 @@
 
                 <!-- 👨‍⚕️ DOCTOR IMAGE -->
                 <div class="flex justify-center">
-                    <img src="/files/dr-virupaksha-ns.jpg" alt="Dr Virupaksha N.S"
+                    <img :src="getFileUrl('dr-virupaksha-ns.jpg')" alt="Dr Virupaksha N.S"
                         class="w-full max-w-md rounded-2xl shadow-lg object-cover" />
                 </div>
 
@@ -108,7 +108,7 @@
 
             <!-- CTA -->
             <div class="text-center mt-10">
-                <router-link to="/appointment">
+                <router-link to="/appointment-page">
                     <button
                         class="bg-yellow-400 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:opacity-90 transition">
                         Book Appointment
@@ -131,4 +131,8 @@ const specializations = [
     "Pediatric Orthopedics",
     "Interventional Pain Management"
 ]
+
+const getFileUrl = (file) => {
+    return `${window.location.origin}/files/${file}`;
+};
 </script>

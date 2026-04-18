@@ -3,7 +3,7 @@
 
     <!-- 🔷 HERO -->
     <section class="relative w-full">
-      <img src="/files/DoctorsTeam.png" alt="Doctors" class="w-full h-48 sm:h-56 md:h-72 object-cover" />
+      <img :src="getFileUrl('DoctorsTeam.png')" alt="Doctors" class="w-full h-48 sm:h-56 md:h-72 object-cover" />
 
       <!-- BLUE OVERLAY -->
       <div class="absolute inset-0 bg-blue-900/70"></div>
@@ -86,6 +86,10 @@ const error = ref(null);
 
 const router = useRouter();
 
+const getFileUrl = (file) => {
+  return `${window.location.origin}/files/${file}`;
+};
+
 // ✅ Fetch Doctors
 const fetchDoctors = async () => {
   try {
@@ -119,7 +123,7 @@ const getImage = (path) => {
 // ✅ Book Appointment
 const bookAppointment = (doctor) => {
   router.push({
-    path: "/appointment",
+    path: "/appointment-page",
     query: {
       doctor_id: doctor.name,
     },

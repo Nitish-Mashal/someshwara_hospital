@@ -8,7 +8,7 @@
 
                 <!-- Image Wrapper -->
                 <div class="relative">
-                    <img src="/files/someshwara-hospital-about.png" alt="Someshwara Hospital"
+                    <img :src="getFileUrl('someshwara-hospital-about.png')" alt="Someshwara Hospital"
                         class="w-full h-auto rounded-2xl shadow-lg" />
 
                     <!-- Accent Box -->
@@ -49,7 +49,7 @@
                 </p>
 
                 <!-- CTA BUTTON -->
-                <router-link to="/appointment">
+                <router-link to="/appointment-page">
                     <button class="bg-blue-700 text-white px-6 py-2 rounded-xl font-semibold
                                    hover:bg-yellow-400 hover:text-blue-700 transition duration-300 w-fit">
                         Book Appointment →
@@ -67,6 +67,10 @@
 import { ref, onMounted } from 'vue'
 
 const textBlock = ref(null)
+
+const getFileUrl = (file) => {
+    return `${window.location.origin}/files/${file}`;
+};
 
 /* Optional: Counter logic (kept if you want to use later) */
 const years = ref(0)

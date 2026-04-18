@@ -60,7 +60,7 @@
                     </p>
 
                     <!-- CTA -->
-                    <router-link to="/appointment">
+                    <router-link to="/appointment-page">
                         <button class="bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold
                                        hover:bg-yellow-400 hover:text-blue-700 transition">
                             Book Appointment →

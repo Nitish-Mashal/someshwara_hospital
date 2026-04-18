@@ -151,7 +151,8 @@
             <label class="mb-1 font-semibold text-gray-700">
               WhatsApp Number *
             </label>
-            <input v-model="form.custom_alternative_phone_number" maxlength="10" placeholder="Enter 10 digit WhatsApp number"
+            <input v-model="form.custom_alternative_phone_number" maxlength="10"
+              placeholder="Enter 10 digit WhatsApp number"
               class="px-2 py-1 border rounded-lg focus:ring-2 focus:ring-[#065f7f]" />
           </div>
 

@@ -36,7 +36,7 @@
                         Based on <strong>3185 reviews</strong>
                     </p>
 
-                    <img src="/files/Google.svg" alt="Google Reviews" class="h-6 mt-2" />
+                    <img :src="getFileUrl('Google.svg')" alt="Google Reviews" class="h-6 mt-2" />
 
                 </div>
 
@@ -111,6 +111,10 @@
 import { ref } from "vue"
 import { Carousel, Slide, Navigation } from "vue3-carousel"
 import "vue3-carousel/dist/carousel.css"
+
+const getFileUrl = (file) => {
+    return `${window.location.origin}/files/${file}`;
+};
 
 const testimonials = ref([
     {

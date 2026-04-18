@@ -11,28 +11,26 @@ override_whitelisted_methods = {
     "someshwara_hospital.get_availability.get_availability_data"
 }
 
-# fixtures = [
-#     {
-#         "doctype": "Custom Field",
-#         "filters": [
-#             ["dt", "in", [
-#                 "Patient Appointment",
-#                 "Healthcare Schedule Time Slot",
-#                 "Healthcare Practitioner"
-#             ]]
-#         ]
-#     },
-#     {
-#         "doctype": "Property Setter",
-#         "filters": [
-#             ["doc_type", "in", [
-#                 "Patient Appointment",
-#                 "Healthcare Schedule Time Slot",
-#                 "Healthcare Practitioner"
-#             ]]
-#         ]
-#     }
-# ]
+website_route_rules = [
+
+    # Static pages
+    {"from_route": "/", "to_route": "index"},
+    {"from_route": "/about-us", "to_route": "index"},
+    {"from_route": "/dr-virupaksha-n-s", "to_route": "index"},
+    {"from_route": "/doctors-list", "to_route": "index"},
+    {"from_route": "/thank-you", "to_route": "index"},
+    {"from_route": "/gallery", "to_route": "index"},
+    {"from_route": "/blog", "to_route": "index"},
+    {"from_route": "/contact-us", "to_route": "index"},
+    {"from_route": "/appointment-page", "to_route": "appointment"},
+    {"from_route": "/<path:app_path>", "to_route": "index"},
+    {"from_route": "/appointment-page", "to_route": "index"},
+
+    # Dynamic routes
+    {"from_route": "/services/<path:slug>", "to_route": "index"},
+    {"from_route": "/viewProfile/<path:id>", "to_route": "index"},
+    {"from_route": "/blogdetails/<path:slug>", "to_route": "index"},
+]
 
 fixtures = [
     # Custom Fields
