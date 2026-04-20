@@ -95,7 +95,7 @@
                 <!-- DESKTOP RIGHT ITEMS -->
                 <div class="hidden md:flex items-center space-x-4 mt-[-10px]">
 
-                    <a href="#"
+                    <a href="https://someshwara.quantumberg.com/login"
                         class="bg-yellow-400 px-4 py-2 rounded-lg text-sm font-semibold text-white no-underline">
                         Login
                     </a>
@@ -189,7 +189,7 @@
                 <li><router-link to="/contact-us" class="text-gray-800 no-underline">Contact Us</router-link></li>
 
                 <li>
-                    <a href="#" class="block w-full text-gray-800 no-underline">
+                    <a href="https://someshwara.quantumberg.com/login" class="block w-full text-gray-800 no-underline">
                         Login
                     </a>
                 </li>

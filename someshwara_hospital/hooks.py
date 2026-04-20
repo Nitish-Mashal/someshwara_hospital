@@ -13,7 +13,7 @@ override_whitelisted_methods = {
 
 website_route_rules = [
 
-    # Static pages
+    # ✅ Only map frontend routes explicitly
     {"from_route": "/", "to_route": "index"},
     {"from_route": "/about-us", "to_route": "index"},
     {"from_route": "/dr-virupaksha-n-s", "to_route": "index"},
@@ -22,11 +22,9 @@ website_route_rules = [
     {"from_route": "/gallery", "to_route": "index"},
     {"from_route": "/blog", "to_route": "index"},
     {"from_route": "/contact-us", "to_route": "index"},
-    {"from_route": "/appointment-page", "to_route": "appointment"},
-    {"from_route": "/<path:app_path>", "to_route": "index"},
     {"from_route": "/appointment-page", "to_route": "index"},
 
-    # Dynamic routes
+    # ✅ Dynamic frontend routes
     {"from_route": "/services/<path:slug>", "to_route": "index"},
     {"from_route": "/viewProfile/<path:id>", "to_route": "index"},
     {"from_route": "/blogdetails/<path:slug>", "to_route": "index"},

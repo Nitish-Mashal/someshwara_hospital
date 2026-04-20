@@ -3,19 +3,17 @@
         <!-- Banner -->
         <div class="relative w-full mb-6 overflow-hidden">
 
-            <img :src="getFileUrl('contact-us-image.jpg')" alt="Someshwara Hospital Gallery"
+            <img :src="bannerImage" alt="Someshwara Hospital Gallery"
                 class="w-full h-48 sm:h-56 md:h-80 object-cover" />
 
-            <!-- BLUE OVERLAY -->
+            <!-- OVERLAY -->
             <div class="absolute inset-0 bg-black/30"></div>
 
             <!-- TEXT -->
             <div class="absolute inset-0 flex items-center justify-center px-4">
-                <div class="text-center">
-                    <h1 class="font-bold text-2xl md:text-4xl text-white">
-                        Contact Us
-                    </h1>
-                </div>
+                <h1 class="font-bold text-2xl md:text-4xl text-white">
+                    Contact Us
+                </h1>
             </div>
         </div>
 
@@ -30,7 +28,7 @@
                     <div class="px-5 py-4 w-full">
                         <div class="md:px-5 max-w-md">
 
-                            <h2 class="text-4xl font-bold bold-test-color mb-1">
+                            <h2 class="text-4xl font-bold mb-1 text-blue-700">
                                 Get in Touch
                             </h2>
                             <p class="text-gray-600 text-sm mb-3">
@@ -42,26 +40,25 @@
 
                                 <!-- Name -->
                                 <el-form-item label="Name" prop="name">
-                                    <input v-model="form.name" type="text" placeholder="Enter your name"
-                                        class="w-full border border-gray-300 rounded-md px-3 py-1 focus:outline-none" />
+                                    <input v-model="form.name" type="text" class="input"
+                                        placeholder="Enter your name" />
                                 </el-form-item>
 
                                 <!-- Email -->
                                 <el-form-item label="Email" prop="email">
-                                    <input v-model="form.email" type="email" placeholder="Enter your email"
-                                        class="w-full border border-gray-300 rounded-md px-3 py-1 focus:outline-none" />
+                                    <input v-model="form.email" type="email" class="input"
+                                        placeholder="Enter your email" />
                                 </el-form-item>
 
                                 <!-- Phone -->
                                 <el-form-item label="Phone" prop="phone">
-                                    <input v-model="form.phone" type="text" placeholder="Enter your phone number"
-                                        class="w-full border border-gray-300 rounded-md px-3 py-1 focus:outline-none" />
+                                    <input v-model="form.phone" type="text" class="input"
+                                        placeholder="Enter your phone number" />
                                 </el-form-item>
 
                                 <!-- Source -->
                                 <el-form-item label="How did you find us?" prop="source">
-                                    <select v-model="form.source"
-                                        class="w-full border border-gray-300 rounded-md px-3 py-1 focus:outline-none">
+                                    <select v-model="form.source" class="input">
                                         <option value="">Select option</option>
                                         <option value="facebook">Facebook</option>
                                         <option value="instagram">Instagram</option>
@@ -73,13 +70,12 @@
 
                                 <!-- Comments -->
                                 <el-form-item label="Comments">
-                                    <textarea v-model="form.comments" placeholder="Enter your message"
-                                        class="w-full border border-gray-300 rounded-md px-3 py-1 focus:outline-none">
-                                    </textarea>
+                                    <textarea v-model="form.comments" class="input"
+                                        placeholder="Enter your message"></textarea>
                                 </el-form-item>
 
                                 <!-- Submit -->
-                                <el-button class="w-full py-2 mt-1 font-semibold rounded-md text-white transition-all"
+                                <el-button class="w-full py-2 mt-2 font-semibold rounded-md text-white"
                                     style="background-color: #1447E6;" :loading="loading" @click="handleSubmit">
                                     SEND
                                 </el-button>
@@ -103,9 +99,7 @@
 
                             <!-- Contact -->
                             <div>
-                                <h2 class="flex items-center gap-3 text-4xl font-bold mb-2">
-                                    <span>Contact Us</span>
-                                </h2>
+                                <h2 class="text-3xl font-bold mb-2">Contact Us</h2>
 
                                 <p class="mb-2">
                                     Talk to us and see how we can work this together
@@ -113,7 +107,7 @@
 
                                 <p>
                                     Phone:
-                                    <a href="tel:+919945141393" class="text-white">
+                                    <a href="tel:+919945141393" class="underline text-white">
                                         +91-9945141393
                                     </a>
                                 </p>
@@ -121,9 +115,7 @@
 
                             <!-- Email -->
                             <div>
-                                <h2 class="flex items-center gap-3 text-4xl font-bold mb-2">
-                                    <span>Email Us</span>
-                                </h2>
+                                <h2 class="text-3xl font-bold mb-2">Email Us</h2>
 
                                 <p class="mb-2">
                                     We usually reply within 24 hours
@@ -131,7 +123,7 @@
 
                                 <p>
                                     E-Mail:
-                                    <a href="mailto:someshwarahospital28@gmail.com" class="text-white">
+                                    <a href="mailto:someshwarahospital28@gmail.com" class="underline text-white">
                                         someshwarahospital28@gmail.com
                                     </a>
                                 </p>
@@ -143,15 +135,21 @@
                 </div>
             </div>
         </div>
-
-        <!-- <AddressCards /> -->
     </div>
 </template>
 
 <script setup>
-// import AddressCards from "./AddressCards.vue";
 import { ref } from "vue";
 
+// ✅ SAFE FUNCTION (no Vue binding issues)
+function getFileUrl(file) {
+    return `/files/${file}`;
+}
+
+// ✅ Precomputed (avoids template execution issue)
+const bannerImage = getFileUrl('contact-us-image.jpg');
+
+// FORM REFS
 const contactForm = ref(null);
 const loading = ref(false);
 const successMsg = ref("");
@@ -169,10 +167,10 @@ const form = ref({
 // VALIDATION
 const rules = {
     name: [
-        { required: true, message: "Please enter your name", trigger: "blur" },
+        { required: true, message: "Please enter your name", trigger: "blur" }
     ],
     email: [
-        { required: true, message: "Please enter your email", trigger: "blur" },
+        { required: true, message: "Please enter your email", trigger: "blur" }
     ],
     phone: [
         { required: true, message: "Please enter Phone Number", trigger: "blur" },
@@ -187,12 +185,12 @@ const rules = {
                     callback();
                 }
             },
-            trigger: "blur",
-        },
+            trigger: "blur"
+        }
     ],
     source: [
-        { required: true, message: "Please select an option", trigger: "change" },
-    ],
+        { required: true, message: "Please select an option", trigger: "change" }
+    ]
 };
 
 // SUBMIT
@@ -212,15 +210,9 @@ const handleSubmit = () => {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "X-Requested-With": "XMLHttpRequest",
+                        "X-Requested-With": "XMLHttpRequest"
                     },
-                    body: JSON.stringify({
-                        name: form.value.name,
-                        email: form.value.email,
-                        phone: form.value.phone,
-                        source: form.value.source,
-                        comments: form.value.comments
-                    }),
+                    body: JSON.stringify(form.value)
                 }
             );
 
@@ -243,3 +235,17 @@ const handleSubmit = () => {
     });
 };
 </script>
+
+<style scoped>
+.input {
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 6px 10px;
+    outline: none;
+}
+
+.input:focus {
+    border-color: #1447E6;
+}
+</style>
