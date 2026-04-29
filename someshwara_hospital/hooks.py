@@ -5,7 +5,7 @@ app_description = "Our hospital provides comprehensive medical services, ranging
 app_email = "nitish.m@quantumberg.com"
 app_license = "mit"
 
-app_include_css = "/assets/custom_app/css/someshwara-theme.css"
+app_include_css = "/assets/someshwara_hospital/css/someshwara-theme.css"
 
 override_whitelisted_methods = {
     "healthcare.healthcare.doctype.patient_appointment.patient_appointment.get_availability_data":
