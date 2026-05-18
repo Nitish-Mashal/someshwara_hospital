@@ -235,13 +235,29 @@ const handleSubmit = () => {
 
             const data = await res.json()
 
-            if (data.message?.message === "success") {
+            if (data.message?.status === "success") {
+
                 successMsg.value =
-                    data.message.success_message ||
+                    data.message.message ||
                     "Thank you for contacting us. We will connect shortly."
+
                 contactForm.value.resetFields()
+
+                // Clear success message after 5 seconds
+                setTimeout(() => {
+                    successMsg.value = ""
+                }, 5000)
+
             } else {
-                errorMsg.value = "Something went wrong. Please try again."
+
+                errorMsg.value =
+                    data.message?.message ||
+                    "Something went wrong. Please try again."
+
+                // Clear error message after 5 seconds
+                setTimeout(() => {
+                    errorMsg.value = ""
+                }, 5000)
             }
         } catch (e) {
             errorMsg.value = "Server error. Please try later."

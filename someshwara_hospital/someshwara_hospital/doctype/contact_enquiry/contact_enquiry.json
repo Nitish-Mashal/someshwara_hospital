@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "field:name1",
+ "autoname": "format:{name1}-{#####}",
  "creation": "2026-04-16 10:21:29.946949",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -24,8 +24,7 @@
   {
    "fieldname": "name1",
    "fieldtype": "Data",
-   "label": "Name",
-   "unique": 1
+   "label": "Name"
   },
   {
    "fieldname": "email",
@@ -61,11 +60,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-16 10:27:32.430274",
+ "modified": "2026-05-18 12:13:08.369309",
  "modified_by": "Administrator",
  "module": "Someshwara Hospital",
  "name": "Contact Enquiry",
- "naming_rule": "By fieldname",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {

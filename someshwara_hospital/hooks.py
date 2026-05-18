@@ -14,19 +14,21 @@ override_whitelisted_methods = {
 
 website_route_rules = [
 
-    # ✅ Only map frontend routes explicitly
+    # ✅ Static frontend routes
     {"from_route": "/", "to_route": "index"},
     {"from_route": "/about-us", "to_route": "index"},
     {"from_route": "/dr-virupaksha-n-s", "to_route": "index"},
+    {"from_route": "/services", "to_route": "index"},
     {"from_route": "/doctors-list", "to_route": "index"},
+    {"from_route": "/appointment-page", "to_route": "index"},
     {"from_route": "/thank-you", "to_route": "index"},
     {"from_route": "/gallery", "to_route": "index"},
     {"from_route": "/blog", "to_route": "index"},
     {"from_route": "/contact-us", "to_route": "index"},
-    {"from_route": "/appointment-page", "to_route": "index"},
 
     # ✅ Dynamic frontend routes
     {"from_route": "/services/<path:slug>", "to_route": "index"},
+    {"from_route": "/treatments/<path:slug>", "to_route": "index"},
     {"from_route": "/viewProfile/<path:id>", "to_route": "index"},
     {"from_route": "/blogdetails/<path:slug>", "to_route": "index"},
 ]
@@ -65,6 +67,12 @@ fixtures = [
                 "Practitioner Schedule"
             ]]
         ]
+    },
+
+    # Custom Desktop Icons
+    {
+        "dt": "Desktop Icon",
+        "dt": "Workspace Sidebar"
     }
 ]
 

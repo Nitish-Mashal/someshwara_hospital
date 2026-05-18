@@ -1,34 +1,36 @@
 <template>
-    <section class="mt-5 py-10 bg-blue-50">
+    <section class="">
 
         <!-- HEADER -->
-        <div class="container position-relative text-center mb-8">
+        <!-- ================= BANNER ================= -->
+        <div class="relative w-full mb-8 overflow-hidden">
 
-            <!-- CENTER CONTENT -->
-            <div>
-                <h3 class="text-3xl font-semibold text-blue-700">
-                    Our Services
-                </h3>
+            <img :src="getFileUrl('services-banner.jpg')" alt="services-banner"
+                class="w-full h-[180px] sm:h-[240px] md:h-[380px] object-cover" />
 
-                <p class="text-gray-600 mt-2 max-w-2xl mx-auto">
-                    Delivering expert care across multiple specialties with advanced technology and compassionate
-                    treatment.
-                </p>
+            <!-- 🔵 THEME OVERLAY -->
+            <div class="absolute inset-0 bg-blue-700/40"></div>
+            <!-- TEXT -->
+            <div class="absolute inset-0 flex items-center justify-center z-10 px-6">
+                <h1 class="text-white font-semibold text-center text-2xl md:text-5xl">
+                    Services
+                </h1>
             </div>
-
-            <!-- VIEW ALL -->
-            <router-link to="/services"
-                class="position-absolute top-0 end-0 text-blue-700 font-medium text-decoration-none hover:text-yellow-400 transition">
-                View All →
-            </router-link>
-
         </div>
+        <!-- <div class="container text-center mb-8">
+            <h3 class="text-3xl font-semibold text-blue-700">
+                Our Services
+            </h3>
+            <p class="text-gray-600 mt-2 max-w-2xl mx-auto">
+                Delivering expert care across multiple specialties with advanced technology and compassionate treatment.
+            </p>
+        </div> -->
 
         <!-- CARDS -->
         <div class="container">
             <div class="row justify-content-center">
 
-                <article v-for="service in services.slice(0, 5)" :key="service.url" class="col-md-4 d-flex">
+                <article v-for="service in services" :key="service.url" class="col-md-4 d-flex">
                     <div class="bg-white rounded-2xl w-full p-6 text-center mb-5 flex flex-col
                 shadow-md transition duration-300
                 hover:shadow-xl hover:-translate-y-2">
@@ -72,6 +74,10 @@
 import { ref, onMounted } from "vue"
 
 const services = ref([])
+
+const getFileUrl = (file) => {
+    return `${window.location.origin}/files/${file}`;
+};
 
 /* ---------------- FETCH SERVICES ---------------- */
 const fetchServices = async () => {

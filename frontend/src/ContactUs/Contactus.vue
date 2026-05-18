@@ -220,7 +220,14 @@ const handleSubmit = () => {
 
             if (res.message?.status === "success") {
                 successMsg.value = res.message.message;
+
                 contactForm.value.resetFields();
+
+                // Clear success message after 5 seconds
+                setTimeout(() => {
+                    successMsg.value = "";
+                }, 5000);
+
             } else {
                 errorMsg.value =
                     res.message?.message || "Something went wrong. Please try again.";

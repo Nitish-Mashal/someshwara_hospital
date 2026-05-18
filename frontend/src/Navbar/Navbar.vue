@@ -46,13 +46,15 @@
 
                     <!-- SERVICES -->
                     <li class="relative group">
-                        <div class="flex items-center gap-1 cursor-pointer hover:text-blue-600 text-gray-800">
-                            Services
-                            <svg class="w-3 h-3 mt-[1px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M19 9l-7 7-7-7" />
-                            </svg>
-                        </div>
+                        <router-link to="/services" class="hover:text-blue-600 text-gray-800 no-underline">
+                            <div class="flex items-center gap-1 cursor-pointer hover:text-blue-600 text-gray-800">
+                                Services
+                                <svg class="w-3 h-3 mt-[1px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </div>
+                        </router-link>
 
                         <ul class="absolute left-1/2 top-full -translate-x-1/2
                             bg-white rounded-xl shadow-xl hidden group-hover:block
@@ -62,6 +64,34 @@
                                     class="block text-[14px] font-medium text-gray-800 hover:text-blue-600 no-underline">
                                     {{ service.name1 }}
                                 </router-link>
+                                <hr class="mt-2">
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Treatments -->
+                    <li class="relative group">
+                        <div class="flex items-center gap-1 cursor-pointer hover:text-blue-600 text-gray-800">
+                            Treatments
+                            <svg class="w-3 h-3 mt-[1px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+
+                        <ul class="absolute left-1/2 top-full -translate-x-1/2
+        bg-white rounded-xl shadow-xl hidden group-hover:block
+        px-6 py-4 z-[9999] columns-3 column-gap-10 min-w-[720px]">
+
+                            <li v-for="treatment in treatments" :key="treatment.url" class="break-inside-avoid mb-3">
+
+                                <router-link :to="`/treatments/${treatment.url}`"
+                                    class="block text-[14px] font-medium text-gray-800 hover:text-blue-600 no-underline">
+
+                                    {{ treatment.name1 }}
+
+                                </router-link>
+
                                 <hr class="mt-2">
                             </li>
                         </ul>
@@ -95,7 +125,7 @@
                 <!-- DESKTOP RIGHT ITEMS -->
                 <div class="hidden md:flex items-center space-x-4 mt-[-10px]">
 
-                    <a href="https://someshwara.quantumberg.com/login"
+                    <a href="https://www.someshwarahospitals.com/login"
                         class="bg-yellow-400 px-4 py-2 rounded-lg text-sm font-semibold text-white no-underline">
                         Login
                     </a>
@@ -166,13 +196,32 @@
                     <div class="flex w-full justify-between items-center">
 
                         <!-- TEXT (optional navigation or just label) -->
-                        <span class="text-gray-800">
-                            Services
-                        </span>
+                        <router-link to="/services" class="text-gray-800 no-underline">
+                            <span class="text-gray-800">
+                                Services
+                            </span>
+                        </router-link>
 
                         <!-- ARROW -->
                         <svg @click.stop="activeMobileDropdown = 'services'" class="w-4 h-4 cursor-pointer" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+
+                    </div>
+                </li>
+                <!-- MOBILE TREATMENTS -->
+                <li>
+                    <div class="flex w-full justify-between items-center">
+
+                        <!-- TEXT -->
+                        <span class="text-gray-800">
+                            Treatments
+                        </span>
+
+                        <!-- ARROW -->
+                        <svg @click.stop="activeMobileDropdown = 'treatments'" class="w-4 h-4 cursor-pointer"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
 
@@ -189,7 +238,7 @@
                 <li><router-link to="/contact-us" class="text-gray-800 no-underline">Contact Us</router-link></li>
 
                 <li>
-                    <a href="https://someshwara.quantumberg.com/login" class="block w-full text-gray-800 no-underline">
+                    <a href="https://www.someshwarahospitals.com/login" class="block w-full text-gray-800 no-underline">
                         Login
                     </a>
                 </li>
@@ -230,6 +279,17 @@
                         </li>
                     </ul>
 
+                    <!-- TREATMENTS -->
+                    <ul v-if="activeMobileDropdown === 'treatments'" class="divide-y">
+                        <li v-for="treatment in treatments" :key="treatment.url">
+                            <router-link :to="`/treatments/${treatment.url}`"
+                                class="block py-3 text-[14px] font-medium text-gray-800 no-underline"
+                                @click="activeMobileDropdown = null">
+                                {{ treatment.name1 }}
+                            </router-link>
+                        </li>
+                    </ul>
+
                     <!-- MORE -->
                     <ul v-if="activeMobileDropdown === 'more'" class="divide-y">
                         <li>
@@ -259,7 +319,8 @@ const mobileFacilities = ref(false)
 const mobileMore = ref(false)
 
 const services = ref([])
-const facilities = ref([])
+const treatments = ref([])
+
 
 const getFileUrl = (file) => {
     return `${window.location.origin}/files/${file}`;
@@ -271,6 +332,16 @@ const fetchServices = async () => {
         const res = await fetch("/api/method/someshwara_hospital.api.our_services.get_our_services")
         const data = await res.json()
         if (data.message?.status === "success") services.value = data.message.data
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+const fetchTreatments = async () => {
+    try {
+        const res = await fetch("/api/method/someshwara_hospital.api.treatments.get_treatments")
+        const data = await res.json()
+        if (data.message?.status === "success") treatments.value = data.message.data
     } catch (err) {
         console.error(err)
     }
@@ -299,7 +370,7 @@ const handleClickOutside = (event) => {
 
 const mobileDropdownTitles = {
     services: "Services",
-    facilities: "Facilities",
+    treatments: "Treatments",
     more: "About Us"
 }
 
@@ -318,6 +389,7 @@ watch(
 // ========================= ON MOUNT =========================
 onMounted(() => {
     fetchServices()
+    fetchTreatments()
     document.addEventListener("click", handleClickOutside)
 })
 

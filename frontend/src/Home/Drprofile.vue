@@ -67,7 +67,7 @@
 const leaders = Object.freeze([
     {
         name: "Dr. Virupaksha N. S.",
-        qualifications: "MBBS, MS (Orthopaedics)",
+        qualifications: "MBBS, DNB, Arthroscopy Specialist",
         designation: "Orthopaedic Surgeon & Trauma Specialist",
         description:
             "Dr. Virupaksha N. S. is a highly experienced orthopaedic surgeon specializing in trauma care, joint disorders, and fracture management. With a strong focus on patient-centered care, he is known for his precise diagnosis, advanced surgical skills, and compassionate approach. His expertise extends to treating complex orthopaedic conditions, helping patients regain mobility and lead pain-free lives through both surgical and non-surgical treatments.",

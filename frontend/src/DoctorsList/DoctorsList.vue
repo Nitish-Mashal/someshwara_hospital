@@ -37,7 +37,7 @@
 
           <!-- IMAGE -->
           <div class="relative">
-            <img :src="getImage(doctor.image)" :alt="doctor.first_name" class="w-full h-72 object-cover"
+            <img :src="getImage(doctor.image)" :alt="doctor.first_name" class="w-full h-96 object-cover"
               loading="lazy" />
           </div>
 
