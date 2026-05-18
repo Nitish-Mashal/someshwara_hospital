@@ -49,10 +49,10 @@
                 </p>
 
                 <!-- CTA -->
-                <a :href="leader.link" target="_blank" class="inline-block bg-blue-700 text-white px-6 py-2 rounded-xl font-semibold
+                <router-link to="/dr-virupaksha-n-s" class="inline-block bg-blue-700 text-white px-6 py-2 rounded-xl font-semibold
                           hover:bg-yellow-400 hover:text-blue-700 transition duration-300">
                     View Profile →
-                </a>
+                </router-link>
 
             </div>
 
@@ -71,8 +71,7 @@ const leaders = Object.freeze([
         designation: "Orthopaedic Surgeon & Trauma Specialist",
         description:
             "Dr. Virupaksha N. S. is a highly experienced orthopaedic surgeon specializing in trauma care, joint disorders, and fracture management. With a strong focus on patient-centered care, he is known for his precise diagnosis, advanced surgical skills, and compassionate approach. His expertise extends to treating complex orthopaedic conditions, helping patients regain mobility and lead pain-free lives through both surgical and non-surgical treatments.",
-        image: "/files/dr-virupaksha-ns.jpg",
-        link: "https://someshwarahospital.com/dr-virupaksha-n-s/"
+        image: "/files/dr-virupaksha-ns.jpg"
     }
 ])
 
