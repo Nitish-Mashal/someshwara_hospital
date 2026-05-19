@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:name1",
  "creation": "2026-04-15 15:55:16.297807",
@@ -11,13 +12,14 @@
   "description",
   "is_active",
   "order_by_sequence",
-  "column_break_itfy",
   "url",
+  "column_break_itfy",
   "created_date",
   "meta_title",
   "meta_keyword",
   "meta_description",
-  "thumnail_image"
+  "thumnail_image",
+  "home_icon"
  ],
  "fields": [
   {
@@ -80,12 +82,17 @@
    "fieldname": "thumnail_image",
    "fieldtype": "Attach Image",
    "label": "Thumnail Image"
+  },
+  {
+   "fieldname": "home_icon",
+   "fieldtype": "Attach Image",
+   "label": "Home Icon"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-04-15 16:01:05.270390",
+ "modified": "2026-05-19 10:48:17.475018",
  "modified_by": "Administrator",
  "module": "Someshwara Hospital",
  "name": "Our Services",

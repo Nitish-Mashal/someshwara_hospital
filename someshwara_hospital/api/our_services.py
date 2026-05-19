@@ -22,6 +22,7 @@ def get_our_services():
                 "meta_keyword",
                 "meta_description",
                 "thumnail_image",
+                "home_icon",
                 "order_by_sequence"
             ],
             order_by="order_by_sequence asc"

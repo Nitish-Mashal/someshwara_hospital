@@ -68,6 +68,7 @@
         <Drprofile />
         <Utility />
         <Whychooseus />
+        <Youtube />
         <Testimonials />
 
     </div>
@@ -82,6 +83,7 @@ const OurServices = defineAsyncComponent(() => import('./OurServices.vue'))
 const Drprofile = defineAsyncComponent(() => import('./Drprofile.vue'))
 const Utility = defineAsyncComponent(() => import('./Utility.vue'))
 const Whychooseus = defineAsyncComponent(() => import('./Whychooseus.vue'))
+const Youtube = defineAsyncComponent(() => import('./Youtube.vue'))
 const Testimonials = defineAsyncComponent(() => import('./Testimonial.vue'))
 
 const banners = ref([])

@@ -171,11 +171,21 @@ const updateSEO = () => {
 
 /* ---------------- IMAGE ---------------- */
 const serviceImage = computed(() => {
-    if (!service.value?.thumnail_image) return ""
+    const image = service.value?.thumnail_image
 
-    return service.value.thumnail_image.startsWith("http")
-        ? service.value.thumnail_image
-        : service.value.thumnail_image   // ✅ FIXED
+    // Placeholder image
+    const placeholder = "/files/services-banner.jpg"
+
+    // If no image uploaded from backend
+    if (!image) return placeholder
+
+    // If full URL
+    if (image.startsWith("http")) {
+        return image
+    }
+
+    // Relative path from backend
+    return image || placeholder
 })
 
 const altText = computed(() =>
