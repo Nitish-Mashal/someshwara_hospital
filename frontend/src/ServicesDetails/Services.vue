@@ -17,14 +17,6 @@
                 </h1>
             </div>
         </div>
-        <!-- <div class="container text-center mb-8">
-            <h3 class="text-3xl font-semibold text-blue-700">
-                Our Services
-            </h3>
-            <p class="text-gray-600 mt-2 max-w-2xl mx-auto">
-                Delivering expert care across multiple specialties with advanced technology and compassionate treatment.
-            </p>
-        </div> -->
 
         <!-- CARDS -->
         <div class="container">
@@ -37,9 +29,9 @@
 
                         <!-- IMAGE -->
                         <div class="flex justify-center mb-4">
-                            <div class="bg-blue-700/10 p-4 rounded-full">
-                                <img :src="getImage(service.thumnail_image)" :alt="service.name1"
-                                    class="w-16 h-16 object-contain" />
+                            <div class="bg-blue-700/10 p-1 rounded-full">
+                                <img :src="getImage(service.home_icon)" :alt="service.name1"
+                                    class="w-20 h-20 object-contain" />
                             </div>
                         </div>
 
@@ -97,11 +89,20 @@ const fetchServices = async () => {
 
 /* ---------------- IMAGE ---------------- */
 const getImage = (img) => {
-    if (!img) return "/images/no-image.png"
 
-    return img.startsWith("http")
-        ? img
-        : window.location.origin + img
+    // Placeholder image
+    const placeholder = "/files/services-placeholder-icon.png"
+
+    // If no image uploaded
+    if (!img) return placeholder
+
+    // If full URL
+    if (img.startsWith("http")) {
+        return img
+    }
+
+    // Relative backend image path
+    return img || placeholder
 }
 
 /* ---------------- CLEAN DESCRIPTION ---------------- */
