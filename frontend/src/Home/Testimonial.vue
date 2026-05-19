@@ -32,9 +32,9 @@
                         <i class="bi bi-star-fill" v-for="i in 5" :key="i"></i>
                     </div>
 
-                    <p class="text-sm mb-2">
+                    <!-- <p class="text-sm mb-2">
                         Based on <strong>3185 reviews</strong>
-                    </p>
+                    </p> -->
 
                     <img :src="getFileUrl('Google.svg')" alt="Google Reviews" class="h-6 mt-2" />
 

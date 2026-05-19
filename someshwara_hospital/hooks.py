@@ -69,10 +69,14 @@ fixtures = [
         ]
     },
 
-    # Custom Desktop Icons
+    # Desktop Icons
     {
-        "dt": "Desktop Icon",
-        "dt": "Workspace Sidebar"
+        "doctype": "Desktop Icon"
+    },
+
+    # Workspace Sidebar
+    {
+        "doctype": "Workspace Sidebar"
     }
 ]
 
