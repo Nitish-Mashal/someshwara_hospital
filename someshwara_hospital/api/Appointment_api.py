@@ -19,18 +19,37 @@ def get_practitioners(department):
     try:
         doctors = frappe.get_all(
             "Healthcare Practitioner",
-             filters={
-            "custom_online_visibility": "Yes"
-        },
-         
-            fields=["name", "first_name", "last_name", "designation","custom_online_visibility"]
+            filters={
+                "custom_online_visibility": "Yes"
+            },
+            fields=[
+                "name",
+                "first_name",
+                "last_name",
+                "designation",
+                "custom_online_visibility",
+                "custom_order_by"   # ✅ Added field
+            ],
+            order_by="custom_order_by asc"   # ✅ Sort ascending
         )
 
-        return {"status": "success", "data": doctors}
+        return {
+            "status": "success",
+            "data": doctors
+        }
 
     except Exception as e:
-        frappe.log_error(frappe.get_traceback(), "get_practitioners API Error")
-        return {"status": "error", "message": str(e)}
+        frappe.log_error(
+            frappe.get_traceback(),
+            "get_practitioners API Error"
+        )
+
+        return {
+            "status": "error",
+            "message": str(e)
+        }
+
+
 # ✅ Get Appointment Types by Department (and hide specific type for a doctor)
 @frappe.whitelist(allow_guest=True)
 def get_appointment_types(department=None, practitioner=None):
@@ -189,308 +208,6 @@ def get_or_create_patient(name, phone, custom_email, gender, age):
 
     return patient_doc.name
 
-
-# @frappe.whitelist(allow_guest=True)
-# def create_appointment():
-#     """Create Patient Appointment for any website user (guest supported)"""
-
-#     try:
-#         # -------------------------------
-#         # Read incoming data
-#         # -------------------------------
-#         data = frappe.local.form_dict
-#         if isinstance(data, str):
-#             data = json.loads(data)
-
-#         patient_name = data.get("name1")
-#         custom_email = data.get("custom_email")
-#         gender = data.get("gender")
-#         phone = data.get("phone") or data.get("phone_number")
-#         age = data.get("age") or data.get("patient_age")
-
-#         practitioner = data.get("practitioner")
-#         department = data.get("department")
-#         appointment_type = data.get("appointment_type")
-#         appointment_date = data.get("appointment_date")
-#         appointment_time = data.get("appointment_time")
-#         notes = data.get("notes", "")
-
-#         # -------------------------------
-#         # Validate required fields
-#         # -------------------------------
-#         if not all([
-#             patient_name,
-#             phone,
-#             practitioner,
-#             appointment_date,
-#             appointment_time
-#         ]):
-#             frappe.throw("Missing required appointment details")
-
-#         # -------------------------------
-#         # Parse appointment time
-#         # -------------------------------
-#         if "-" in appointment_time:
-#             start_str = appointment_time.split("-")[0].strip()
-#         else:
-#             start_str = appointment_time.strip()
-
-#         start_time = datetime.strptime(start_str, "%H:%M:%S").time()
-
-#         # -------------------------------
-#         # Ensure Patient exists
-#         # -------------------------------
-#         patient = get_or_create_patient(
-#             patient_name,
-#             phone,
-#             custom_email,
-#             gender,
-#             age
-#         )
-
-#         # -------------------------------
-#         # Overlap check
-#         # -------------------------------
-#         overlap = frappe.db.exists({
-#             "doctype": "Patient Appointment",
-#             "practitioner": practitioner,
-#             "appointment_date": appointment_date,
-#             "appointment_time": start_time
-#         })
-
-#         if overlap:
-#             practitioner_doc = frappe.get_doc(
-#                 "Healthcare Practitioner", practitioner
-#             )
-#             doctor_name = (
-#                 practitioner_doc.first_name
-#                 or practitioner_doc.practitioner_name
-#                 or "Doctor"
-#             )
-#             frappe.throw(
-#                 f"Selected time slot is already booked with Dr. {doctor_name}"
-#             )
-
-#         # -------------------------------
-#         # Create Appointment
-#         # -------------------------------
-#         appointment = frappe.get_doc({
-#             "doctype": "Patient Appointment",
-
-#             # ✅ MANDATORY FIELD
-#             "appointment_for": "Patient",
-
-#             "patient": patient,
-#             "appointment_type": appointment_type,
-#             "appointment_date": appointment_date,
-#             "appointment_time": start_time,
-#             "practitioner": practitioner,
-#             "department": department,
-#             "notes": notes,
-#             "phone_number": phone,
-#             "patient_age": age
-#         })
-
-#         appointment.insert(ignore_permissions=True)
-#         frappe.db.commit()
-
-#         return {
-#             "status": "success",
-#             "appointment_id": appointment.name,
-#             "appointment_date": appointment.appointment_date,
-#             "appointment_time": str(appointment.appointment_time),
-#             "patient": patient
-#         }
-
-#     except Exception as e:
-#         frappe.log_error(
-#             frappe.get_traceback(),
-#             "Create Appointment API Error"
-#         )
-#         return {
-#             "status": "error",
-#             "message": str(e)
-#         }
-
-# import frappe
-# import json
-# from datetime import datetime
-
-
-# @frappe.whitelist(allow_guest=True)
-# def create_appointment():
-#     """Create Patient Appointment for website users (guest supported)"""
-
-#     try:
-#         # -------------------------------
-#         # Read incoming data
-#         # -------------------------------
-#         data = frappe.local.form_dict
-#         if isinstance(data, str):
-#             data = json.loads(data)
-
-#         patient_name = data.get("name1")
-#         custom_email = data.get("custom_email")
-#         gender = data.get("gender")
-#         phone = data.get("phone") or data.get("phone_number")
-#         age = data.get("age") or data.get("patient_age")
-
-#         practitioner = data.get("practitioner")
-#         department = data.get("department")
-#         appointment_type = data.get("appointment_type")
-#         appointment_date = data.get("appointment_date")
-#         appointment_time = data.get("appointment_time")
-#         notes = data.get("notes", "")
-#         custom_token_no = data.get("custom_token_no")
-#         custom_location = data.get("custom_location")
-        
-
-#         # -------------------------------
-#         # Validate required fields
-#         # -------------------------------
-#         if not all([
-#             patient_name,
-#             phone,
-#             practitioner,
-#             appointment_date,
-#             appointment_time,
-#             appointment_type
-#         ]):
-#             frappe.throw("Missing required appointment details")
-
-#         # -------------------------------
-#         # Parse appointment time
-#         # -------------------------------
-#         if "-" in appointment_time:
-#             start_str = appointment_time.split("-")[0].strip()
-#         else:
-#             start_str = appointment_time.strip()
-
-#         start_time = datetime.strptime(start_str, "%H:%M:%S").time()
-
-#         # -------------------------------
-#         # Get existing Patient by phone
-#         # -------------------------------
-#         patient = frappe.db.get_value(
-#             "Patient",
-#             {"mobile": phone},
-#             "name"
-#         ) or frappe.db.get_value(
-#             "Patient",
-#             {"phone": phone},
-#             "name"
-#         )
-
-#         # -------------------------------
-#         # Prevent duplicate booking:
-#         # same patient + same doctor + same date
-#         # -------------------------------
-#         if patient:
-#             duplicate = frappe.db.exists(
-#                 "Patient Appointment",
-#                 {
-#                     "patient": patient,
-#                     "practitioner": practitioner,
-#                     "appointment_date": appointment_date,
-#                     "status": ["not in", ["Cancelled", "No Show"]]
-#                 }
-#             )
-
-#             if duplicate:
-#                 practitioner_doc = frappe.get_doc(
-#                     "Healthcare Practitioner", practitioner
-#                 )
-#                 doctor_name = (
-#                     practitioner_doc.first_name
-#                     or practitioner_doc.practitioner_name
-#                     or "Doctor"
-#                 )
-#                 frappe.throw(
-#                     f"You already have an appointment with Dr. {doctor_name} on this date."
-#                 )
-
-#         # -------------------------------
-#         # Time-slot overlap check
-#         # -------------------------------
-#         overlap = frappe.db.exists(
-#             "Patient Appointment",
-#             {
-#                 "practitioner": practitioner,
-#                 "appointment_date": appointment_date,
-#                 "appointment_time": start_time,
-#                 "status": ["not in", ["Cancelled", "No Show"]]
-#             }
-#         )
-
-#         if overlap:
-#             practitioner_doc = frappe.get_doc(
-#                 "Healthcare Practitioner", practitioner
-#             )
-#             doctor_name = (
-#                 practitioner_doc.first_name
-#                 or practitioner_doc.practitioner_name
-#                 or "Doctor"
-#             )
-#             frappe.throw(
-#                 f"Selected time slot is already booked with Dr. {doctor_name}"
-#             )
-
-#         # -------------------------------
-#         # Create Patient if not exists
-#         # -------------------------------
-#         if not patient:
-#             patient_doc = frappe.get_doc({
-#                 "doctype": "Patient",
-#                 "first_name": patient_name,
-#                 "patient_name": patient_name,
-#                 "mobile": phone,
-#                 "custom_email": custom_email,
-#                 "sex": gender
-#             })
-#             patient_doc.insert(ignore_permissions=True)
-#             patient = patient_doc.name
-
-#         # -------------------------------
-#         # Create Patient Appointment
-#         # -------------------------------
-#         appointment = frappe.get_doc({
-#             "doctype": "Patient Appointment",
-#             "appointment_for": "Practitioner",
-#             "patient": patient,
-#             "appointment_type": appointment_type,
-#             "appointment_date": appointment_date,
-#             "appointment_time": start_time,
-#             "practitioner": practitioner,
-#             "department": department,
-#             "notes": notes,
-#             "custom_token_no": custom_token_no,
-#             "custom_location": custom_location,
-#             "phone_number": phone
-#         })
-
-#         appointment.insert(ignore_permissions=True)
-#         frappe.db.commit()
-
-#         return {
-#             "status": "success",
-#             "appointment_id": appointment.name,
-#             "appointment_date": appointment.appointment_date,
-#             "appointment_time": str(appointment.appointment_time),
-#             "patient": patient,
-#             "custom_token_no": appointment.custom_token_no,
-#             "practitioner": practitioner 
-            
-#         }
-
-#     except Exception as e:
-#         frappe.log_error(
-#             frappe.get_traceback(),
-#             "Create Appointment API Error"
-#         )
-#         return {
-#             "status": "error",
-#             "message": str(e)
-#         }
 
 import frappe
 import json

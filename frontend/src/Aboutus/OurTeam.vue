@@ -136,7 +136,7 @@ const team = [
     {
         name: "Bharathi",
         role: "OT & X-Ray Operations",
-        image: "",
+        image: "/files/bharathi-smh.jpeg",
         description: "Oversees OT and X-Ray operations with a focus on efficiency, safety, and quality care."
     },
     {
@@ -165,8 +165,8 @@ const team = [
     },
     {
         name: "Rudresh",
-        role: "Pharmacist",
-        image: "",
+        role: "Pharmacy Incharge",
+        image: "/files/rudresh-smh.jpeg",
         description: "Manages pharmacy services ensuring safe and effective medication use."
     },
     {
