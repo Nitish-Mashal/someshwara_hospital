@@ -69,15 +69,15 @@ fixtures = [
         ]
     },
 
-    # Desktop Icons
-    {
-        "doctype": "Desktop Icon"
-    },
+    # # Desktop Icons
+    # {
+    #     "doctype": "Desktop Icon"
+    # },
 
-    # Workspace Sidebar
-    {
-        "doctype": "Workspace Sidebar"
-    }
+    # # Workspace Sidebar
+    # {
+    #     "doctype": "Workspace Sidebar"
+    # }
 ]
 
 # Apps

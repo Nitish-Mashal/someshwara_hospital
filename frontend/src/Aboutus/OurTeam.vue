@@ -184,7 +184,7 @@ const team = [
     {
         name: "Tarun",
         role: "Night Duty Incharge",
-        image: "",
+        image: "/files/tarun-smh.jpeg",
         description: "Oversees night operations and ensures timely emergency care."
     }
 ]
