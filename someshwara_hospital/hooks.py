@@ -12,12 +12,6 @@ override_whitelisted_methods = {
     "someshwara_hospital.get_availability.get_availability_data"
 }
 
-scheduler_events = {
-    "daily": [
-        "someshwara_hospital.api.reset_daily_queue.reset_daily_queue"
-    ]
-}
-
 website_route_rules = [
 
     # ✅ Static frontend routes
@@ -40,50 +34,47 @@ website_route_rules = [
 ]
 
 fixtures = [
-    # Custom Fields
+
+    # Custom Fields (NEW fields from Customize Form)
     {
         "doctype": "Custom Field",
         "filters": [
             ["dt", "in", [
                 "Patient Appointment",
                 "Healthcare Schedule Time Slot",
-                "Healthcare Practitioner"
+                "Healthcare Practitioner",
+                "Discharge Summary",
+                "Patient Encounter"
             ]]
         ]
     },
 
-    # Property Setters (if used)
+    # Property Setter (RENAME LABELS, hidden, read-only, etc.)
     {
         "doctype": "Property Setter",
         "filters": [
             ["doc_type", "in", [
                 "Patient Appointment",
                 "Healthcare Schedule Time Slot",
-                "Healthcare Practitioner"
+                "Healthcare Practitioner",
+                "Discharge Summary",
+                "Patient Encounter"
             ]]
         ]
     },
 
-    # ✅ Client Scripts
+    # Client Scripts
     {
         "doctype": "Client Script",
         "filters": [
             ["dt", "in", [
                 "Patient Appointment",
-                "Practitioner Schedule"
+                "Practitioner Schedule",
+                "Patient",
+                "Patient Encounter"
             ]]
         ]
-    },
-
-    # # Desktop Icons
-    # {
-    #     "doctype": "Desktop Icon"
-    # },
-
-    # # Workspace Sidebar
-    # {
-    #     "doctype": "Workspace Sidebar"
-    # }
+    }
 ]
 
 # Apps
