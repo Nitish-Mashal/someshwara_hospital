@@ -20,7 +20,7 @@ scheduler_events = {
 }
 doc_events = {
     "Patient Appointment": {
-        "before_insert": "someshwara_hospital.patient_appointment.generate_queue_number"
+       "before_insert": "someshwara_hospital.api.queue_generate.generate_queue_number"
     }
 }
 
