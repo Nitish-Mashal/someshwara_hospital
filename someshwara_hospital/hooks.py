@@ -12,6 +12,19 @@ override_whitelisted_methods = {
     "someshwara_hospital.get_availability.get_availability_data"
 }
 
+
+scheduler_events = {
+    "daily": [
+        "someshwara_hospital.api.reset_daily_queue.reset_daily_queue"
+    ]
+}
+doc_events = {
+    "Patient Appointment": {
+        "before_insert": "someshwara_hospital.patient_appointment.generate_queue_number"
+    }
+}
+
+
 website_route_rules = [
 
     # ✅ Static frontend routes
