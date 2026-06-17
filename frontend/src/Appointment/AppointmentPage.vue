@@ -305,7 +305,7 @@ export default {
     try {
 
       // ✅ Set department manually
-      this.form.department = "Orthopaedics";
+      this.form.department = "Orthopedic";
 
       const { doctor_id } = this.$route.query;
 
@@ -672,7 +672,11 @@ export default {
           "/api/method/someshwara_hospital.api.Appointment_api.create_appointment",
           {
             method: "POST",
-            body: formData
+            headers: {
+              "X-Frappe-CSRF-Token": frappe.csrf_token
+            },
+            body: formData,
+            credentials: "include"
           }
         );
 
