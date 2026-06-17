@@ -668,12 +668,16 @@ export default {
         );
 
         // ---------------- API CALL ----------------
+        const csrfToken =
+          window.csrf_token ||
+          document.querySelector('meta[name="csrf-token"]')?.content;
+
         const response = await fetch(
           "/api/method/someshwara_hospital.api.Appointment_api.create_appointment",
           {
             method: "POST",
             headers: {
-              "X-Frappe-CSRF-Token": frappe.csrf_token
+              "X-Frappe-CSRF-Token": csrfToken
             },
             body: formData,
             credentials: "include"

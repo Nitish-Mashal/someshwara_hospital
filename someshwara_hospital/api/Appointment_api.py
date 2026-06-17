@@ -1,3 +1,7 @@
+from healthcare.healthcare.doctype.patient_appointment.patient_appointment import (
+    PatientAppointment
+)
+
 import frappe, json
 
 # ✅ Get all Medical Departments
@@ -114,7 +118,7 @@ from frappe.utils import getdate
 
 @frappe.whitelist(allow_guest=True)
 def get_doctor_schedule(practitioner, appointment_date=None):
-    """Return ALL slots with booked status (date-wise)"""
+    """Return all slots without booking restrictions"""
 
     try:
         if not practitioner:
@@ -123,34 +127,27 @@ def get_doctor_schedule(practitioner, appointment_date=None):
         if appointment_date:
             appointment_date = getdate(appointment_date)
 
-        practitioner_doc = frappe.get_doc("Healthcare Practitioner", practitioner)
+        practitioner_doc = frappe.get_doc(
+            "Healthcare Practitioner",
+            practitioner
+        )
+
         schedule_list = []
 
         for row in practitioner_doc.practitioner_schedules:
-            schedule_doc = frappe.get_doc("Practitioner Schedule", row.schedule)
+            schedule_doc = frappe.get_doc(
+                "Practitioner Schedule",
+                row.schedule
+            )
 
             for s in schedule_doc.time_slots:
-
-                booked = False
-
-                if appointment_date:
-                    booked = frappe.db.exists(
-                        "Patient Appointment",
-                        {
-                            "practitioner": practitioner,
-                            "appointment_date": appointment_date,
-                            "appointment_time": s.from_time,
-                            "status": ["!=", "Cancelled"]
-                        }
-                    )
-
                 schedule_list.append({
-                    "appointment_date": appointment_date,   # ✅ DATE ADDED
+                    "appointment_date": appointment_date,
                     "day": s.day,
                     "from_time": s.from_time,
                     "to_time": s.to_time,
                     "custom_token_no": s.custom_token_no,
-                    "booked": bool(booked)                   # ✅ TRUE / FALSE
+                    "booked": False
                 })
 
         return schedule_list
@@ -293,58 +290,6 @@ def create_appointment():
             ):
                 patient = existing_patient.name
 
-        # ---------------------------------------------------
-        # 5️⃣ Prevent Duplicate Appointment (Same Patient + Doctor + Date)
-        # ---------------------------------------------------
-        if patient:
-            duplicate = frappe.db.exists(
-                "Patient Appointment",
-                {
-                    "patient": patient,
-                    "practitioner": practitioner,
-                    "appointment_date": appointment_date,
-                    "status": ["not in", ["Cancelled", "No Show"]]
-                }
-            )
-
-            if duplicate:
-                practitioner_doc = frappe.get_doc(
-                    "Healthcare Practitioner", practitioner
-                )
-                doctor_name = (
-                    practitioner_doc.first_name
-                    or practitioner_doc.practitioner_name
-                    or "Doctor"
-                )
-                frappe.throw(
-                    f"You already have an appointment with Dr. {doctor_name} on this date."
-                )
-
-        # ---------------------------------------------------
-        # 6️⃣ Prevent Slot Overlap
-        # ---------------------------------------------------
-        overlap = frappe.db.exists(
-            "Patient Appointment",
-            {
-                "practitioner": practitioner,
-                "appointment_date": appointment_date,
-                "appointment_time": start_time,
-                "status": ["not in", ["Cancelled", "No Show"]]
-            }
-        )
-
-        if overlap:
-            practitioner_doc = frappe.get_doc(
-                "Healthcare Practitioner", practitioner
-            )
-            doctor_name = (
-                practitioner_doc.first_name
-                or practitioner_doc.practitioner_name
-                or "Doctor"
-            )
-            frappe.throw(
-                f"Selected time slot is already booked with Dr. {doctor_name}"
-            )
 
         # ---------------------------------------------------
         # 7️⃣ Create Patient If Not Exists
@@ -380,10 +325,23 @@ def create_appointment():
             "phone_number": phone,
             "custom_alternative_phone_number": custom_alternative_phone_number,
             "custom_whatsapp_number": custom_whatsapp_number,
-            "custom_booking_type": "Online"       })
+            "custom_booking_type": "Online"
+        })
 
-        appointment.insert(ignore_permissions=True)
-        frappe.db.commit()
+        from healthcare.healthcare.doctype.patient_appointment.patient_appointment import (
+            PatientAppointment
+        )
+
+        original_validate_overlaps = PatientAppointment.validate_overlaps
+
+        try:
+            PatientAppointment.validate_overlaps = lambda self: None
+
+            appointment.insert(ignore_permissions=True)
+            frappe.db.commit()
+
+        finally:
+            PatientAppointment.validate_overlaps = original_validate_overlaps
 
         return {
             "status": "success",

@@ -13,16 +13,16 @@ override_whitelisted_methods = {
 }
 
 
-scheduler_events = {
-    "daily": [
-        "someshwara_hospital.api.reset_daily_queue.reset_daily_queue"
-    ]
-}
-doc_events = {
-    "Patient Appointment": {
-       "before_insert": "someshwara_hospital.api.queue_generate.generate_queue_number"
-    }
-}
+# scheduler_events = {
+#     "daily": [
+#         "someshwara_hospital.api.reset_daily_queue.reset_daily_queue"
+#     ]
+# }
+# doc_events = {
+#     "Patient Appointment": {
+#        "before_insert": "someshwara_hospital.api.queue_generate.generate_queue_number"
+#     }
+# }
 
 
 website_route_rules = [
