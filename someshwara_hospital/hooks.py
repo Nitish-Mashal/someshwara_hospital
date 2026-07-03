@@ -12,6 +12,9 @@ override_whitelisted_methods = {
     "someshwara_hospital.get_availability.get_availability_data"
 }
 
+override_doctype_class = {
+    "Lab Test": "someshwara_hospital.overrides.lab_test.CustomLabTest"
+}
 
 # scheduler_events = {
 #     "daily": [
