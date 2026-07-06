@@ -60,7 +60,8 @@ fixtures = [
                 "Healthcare Schedule Time Slot",
                 "Healthcare Practitioner",
                 "Discharge Summary",
-                "Patient Encounter"
+                "Patient Encounter",
+                "patient"
             ]]
         ]
     },
@@ -74,7 +75,8 @@ fixtures = [
                 "Healthcare Schedule Time Slot",
                 "Healthcare Practitioner",
                 "Discharge Summary",
-                "Patient Encounter"
+                "Patient Encounter",
+                "Lab Test"
             ]]
         ]
     },
@@ -87,7 +89,8 @@ fixtures = [
                 "Patient Appointment",
                 "Practitioner Schedule",
                 "Patient",
-                "Patient Encounter"
+                "Patient Encounter",
+                "Lab Test"
             ]]
         ]
     }

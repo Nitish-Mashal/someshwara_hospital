@@ -2,6 +2,17 @@
  {
   "docstatus": 0,
   "doctype": "Client Script",
+  "dt": "Lab Test",
+  "enabled": 0,
+  "modified": "2026-07-06 11:41:44.328834",
+  "module": null,
+  "name": "Lab Test Overridden",
+  "script": "frappe.ui.form.on(\"Lab Test\", {\r\n    validate: function(frm) {\r\n        if (frm.doc.custom_lab_test && frm.doc.custom_lab_test.length > 0) {\r\n            frm.doc.template = frm.doc.custom_lab_test[0].lab_test;\r\n        }\r\n    }\r\n});",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
   "dt": "Practitioner Schedule",
   "enabled": 1,
   "modified": "2026-04-17 11:11:03.080221",
@@ -30,6 +41,17 @@
   "module": null,
   "name": "Patient-UID-Generation",
   "script": "frappe.ui.form.on('Patient', {\r\n    after_save(frm) {\r\n\r\n        if (!frm.doc.uid && frm.doc.name) {\r\n\r\n            let match = frm.doc.name.match(/(\\d{4})-(\\d+)/);\r\n\r\n            if (match) {\r\n\r\n                let year = match[1];\r\n                let number = match[2];\r\n\r\n                frappe.db.set_value(\r\n                    'Patient',\r\n                    frm.doc.name,\r\n                    'uid',\r\n                    `UID${year}${number}`\r\n                ).then(() => {\r\n\r\n                    frm.reload_doc();\r\n\r\n                });\r\n            }\r\n        }\r\n    }\r\n});",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Lab Test",
+  "enabled": 1,
+  "modified": "2026-07-03 15:55:48.577997",
+  "module": null,
+  "name": "Lab Test Age Generate",
+  "script": "frappe.ui.form.on(\"Lab Test\", {\r\n    patient: function(frm) {\r\n        if (!frm.doc.patient) {\r\n            frm.set_value(\"patient_age\", \"\");\r\n            return;\r\n        }\r\n\r\n        frappe.db.get_value(\"Patient\", frm.doc.patient, \"custom_age\")\r\n            .then(r => {\r\n                if (r.message) {\r\n                    frm.set_value(\"patient_age\", r.message.custom_age);\r\n                }\r\n            });\r\n    },\r\n\r\n    refresh: function(frm) {\r\n        if (frm.doc.patient && !frm.doc.__islocal) {\r\n            frappe.db.get_value(\"Patient\", frm.doc.patient, \"custom_age\")\r\n                .then(r => {\r\n                    if (r.message) {\r\n                        frm.set_value(\"patient_age\", r.message.custom_age);\r\n                    }\r\n                });\r\n        }\r\n    }\r\n});",
   "view": "Form"
  }
 ]
