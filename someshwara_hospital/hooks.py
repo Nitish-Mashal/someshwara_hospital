@@ -51,7 +51,7 @@ website_route_rules = [
 
 fixtures = [
 
-    # Custom Fields (NEW fields from Customize Form)
+    # Custom Fields
     {
         "doctype": "Custom Field",
         "filters": [
@@ -61,12 +61,12 @@ fixtures = [
                 "Healthcare Practitioner",
                 "Discharge Summary",
                 "Patient Encounter",
-                "patient"
+                "Patient"
             ]]
         ]
     },
 
-    # Property Setter (RENAME LABELS, hidden, read-only, etc.)
+    # Property Setters
     {
         "doctype": "Property Setter",
         "filters": [
@@ -91,6 +91,22 @@ fixtures = [
                 "Patient",
                 "Patient Encounter",
                 "Lab Test"
+            ]]
+        ]
+    },
+
+    # Print Formats
+    {
+        "doctype": "Print Format",
+        "filters": [
+            ["name", "in", [
+                "New Lab Test Print",
+                "Someshwara Discharge Summary",
+                "Someshwara Pharma Print",
+                "Someshwara Patient Encounter Print",
+                "Someshwara Hospital Lab Test Print",
+                "Patient Registration",
+                "S - Lab Test Print"
             ]]
         ]
     }
