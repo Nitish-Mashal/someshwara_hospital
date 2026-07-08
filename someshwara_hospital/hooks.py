@@ -61,7 +61,9 @@ fixtures = [
                 "Healthcare Practitioner",
                 "Discharge Summary",
                 "Patient Encounter",
-                "Patient"
+                "Patient",
+                "Normal Test Result",
+                "Lab Test"
             ]]
         ]
     },
@@ -76,7 +78,8 @@ fixtures = [
                 "Healthcare Practitioner",
                 "Discharge Summary",
                 "Patient Encounter",
-                "Lab Test"
+                "Lab Test",
+                "Normal Test Result"
             ]]
         ]
     },
