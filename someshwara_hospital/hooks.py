@@ -63,7 +63,9 @@ fixtures = [
                 "Patient Encounter",
                 "Patient",
                 "Normal Test Result",
-                "Lab Test"
+                "Lab Test",
+                "Normal Test Template",
+                "Lab Test Template"
             ]]
         ]
     },
@@ -79,7 +81,9 @@ fixtures = [
                 "Discharge Summary",
                 "Patient Encounter",
                 "Lab Test",
-                "Normal Test Result"
+                "Normal Test Result",
+                "Normal Test Template",
+                "Lab Test Template"
             ]]
         ]
     },
@@ -109,7 +113,17 @@ fixtures = [
                 "Someshwara Patient Encounter Print",
                 "Someshwara Hospital Lab Test Print",
                 "Patient Registration",
-                "S - Lab Test Print"
+                "S - Lab Test Print",
+                "New Lab Test print",
+                "New Lab test print without header and footer",
+            ]]
+        ]
+    },
+    {
+        "doctype": "Letter Head",
+        "filters": [
+            ["name", "in", [
+                "Someshwara Hospital",
             ]]
         ]
     }
