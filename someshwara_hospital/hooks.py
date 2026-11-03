@@ -12,10 +12,6 @@ override_whitelisted_methods = {
     "someshwara_hospital.get_availability.get_availability_data"
 }
 
-override_doctype_class = {
-    "Lab Test": "someshwara_hospital.overrides.lab_test.CustomLabTest"
-}
-
 scheduler_events = {
     "daily": [
         "someshwara_hospital.api.reset_daily_queue.reset_daily_queue"
