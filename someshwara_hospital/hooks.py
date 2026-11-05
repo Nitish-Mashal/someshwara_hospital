@@ -20,7 +20,14 @@ scheduler_events = {
 doc_events = {
     "Patient Appointment": {
        "before_insert": "someshwara_hospital.api.queue_generate.generate_queue_number"
+    },
+    "Lab Test": {
+       "before_print": "someshwara_hospital.api.lab_test_print.filter_selected_templates"
     }
+}
+
+doctype_js = {
+    "Lab Test": "public/js/lab_test_print.js"
 }
 
 
